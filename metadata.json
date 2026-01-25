@@ -1,5 +1,7 @@
 {
   "name": "Awareness Africa Foundation",
   "description": "A high-impact, donor-ready organizational website for Awareness Africa Foundation, focusing on youth empowerment, gender equity, and community resilience.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "geolocation"
+  ]
 }

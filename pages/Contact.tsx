@@ -1,7 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Globe, Linkedin, Twitter, Facebook, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, Globe, Linkedin, Twitter, Facebook, ArrowRight, Navigation } from 'lucide-react';
 import Button from '../components/Button';
 
 const revealProps = {
@@ -12,8 +12,34 @@ const revealProps = {
 };
 
 const Contact: React.FC = () => {
+  const [geoLoading, setGeoLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+  };
+
+  const handleLiveNavigation = () => {
+    setGeoLoading(true);
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          // Open Google Maps directions from user location to Zonkwa, Kaduna
+          const url = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=Zonkwa,Kaduna,Nigeria&travelmode=driving`;
+          window.open(url, '_blank');
+          setGeoLoading(false);
+        },
+        (error) => {
+          console.error("Error obtaining location", error);
+          // Fallback to static destination search
+          window.open('https://www.google.com/maps/search/?api=1&query=Zonkwa,Kaduna,Nigeria', '_blank');
+          setGeoLoading(false);
+        }
+      );
+    } else {
+      window.open('https://www.google.com/maps/search/?api=1&query=Zonkwa,Kaduna,Nigeria', '_blank');
+      setGeoLoading(false);
+    }
   };
 
   return (
@@ -73,8 +99,8 @@ const Contact: React.FC = () => {
                     <div>
                       <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-400 mb-3">Regional HQ</h4>
                       <p className="text-2xl font-display font-bold text-slate-900 leading-tight">
-                        No. 12 Independence Way, <br/>
-                        Kaduna, Nigeria.
+                        Zonkwa, <br/>
+                        Southern Kaduna, Nigeria.
                       </p>
                     </div>
                   </div>
@@ -183,27 +209,47 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 3 — STYLIZED MAP PLACEHOLDER */}
+      {/* SECTION 3 — LIVE LOCATION MAP */}
       <section className="py-20 px-6">
-        <motion.div 
-          {...revealProps}
-          className="max-w-7xl mx-auto h-[400px] bg-slate-900 relative overflow-hidden flex items-center justify-center text-center"
-        >
-          <div className="absolute inset-0 opacity-20 grayscale pointer-events-none">
-            <img 
-              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2000" 
-              alt="Map Background" 
-              className="w-full h-full object-cover"
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-px bg-slate-900 border border-slate-900 shadow-2xl overflow-hidden">
+          {/* Information Column */}
+          <div className="p-12 bg-slate-900 text-white space-y-8 lg:col-span-1 flex flex-col justify-between">
+            <div>
+              <div className="w-16 h-16 bg-brand-accent/20 border border-brand-accent flex items-center justify-center mb-10">
+                <MapPin size={24} className="text-brand-accent" />
+              </div>
+              <h4 className="text-2xl font-display font-bold mb-4">Zonkwa Headquarters</h4>
+              <p className="text-white/40 text-[10px] uppercase tracking-[0.4em] font-bold mb-8">Nigeria — West Africa Liaison</p>
+              <p className="text-sm text-white/60 font-light leading-relaxed">
+                Operating from the heart of Southern Kaduna, our center serves as a beacon for youth development and community leadership.
+              </p>
+            </div>
+            
+            <button 
+              onClick={handleLiveNavigation}
+              disabled={geoLoading}
+              className="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] font-bold text-brand-accent hover:text-white transition-colors"
+            >
+              {geoLoading ? 'Acquiring...' : 'Find Route from My Location'} 
+              <Navigation size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </button>
+          </div>
+
+          {/* Interactive Map Column */}
+          <div className="h-[600px] lg:col-span-3 bg-slate-100 relative">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15724.84666504267!2d8.2771239!3d9.7504229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10f76016e344799f%3A0x6b1580f4f958440c!2sZonkwa!5e0!3m2!1sen!2sng!4v1715600000000!5m2!1sen!2sng" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Awareness Africa Headquarters - Zonkwa"
+              className="grayscale contrast-125 opacity-90"
             />
           </div>
-          <div className="relative z-10 space-y-6">
-             <div className="w-20 h-20 bg-brand-accent/20 border border-brand-accent flex items-center justify-center mx-auto mb-4">
-                <MapPin size={32} className="text-brand-accent" />
-             </div>
-             <h4 className="text-white text-2xl font-display font-bold">Kaduna Operating Center</h4>
-             <p className="text-white/40 text-[10px] uppercase tracking-[0.4em] font-bold">Nigeria — West Africa Liaison</p>
-          </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   );
