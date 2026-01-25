@@ -6,228 +6,105 @@ import {
   ArrowRight, 
   Share2, 
   Heart, 
-  ShieldCheck, 
-  BookOpen, 
-  Users, 
-  Target, 
-  Download, 
-  MessageSquare, 
   CheckCircle2,
-  ChevronRight,
-  ChevronLeft,
-  FileText,
-  TrendingUp,
-  Activity,
-  UserPlus,
-  Globe,
-  AlertCircle,
-  BarChart3,
-  Layers,
-  Settings,
-  MessageCircle
+  Calendar,
+  Users,
+  Target,
+  ShieldCheck,
+  BookOpen,
+  MapPin,
+  ClipboardCheck,
+  Award,
+  MessageCircle,
+  FileEdit
 } from 'lucide-react';
 import Button from '../components/Button';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const revealProps = {
-  initial: { opacity: 0, y: 10 },
+  initial: { opacity: 0, y: 15 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.4, ease: "easeOut" }
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
 };
+
+const staggerReveal = (index: number) => ({
+  initial: { opacity: 0, x: 50 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, margin: "-50px" },
+  transition: { duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }
+});
 
 const SectionDivider = () => (
   <div className="w-full px-6">
-    <div className="max-w-7xl mx-auto h-1 bg-slate-900" />
+    <div className="max-w-7xl mx-auto h-px bg-slate-100" />
   </div>
 );
 
 const HerAwarenessPage: React.FC = () => {
+  const handleApplyClick = () => {
+    window.open('https://forms.gle/c1gWdoQJ5UgtqLqJ6', '_blank');
+  };
+
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen selection:bg-[#E91E63] selection:text-white">
+      {/* Institutional Breadcrumb */}
       <div className="bg-white border-b border-slate-50 py-6 px-6 sticky top-[72px] z-40">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 hover:text-black transition-colors group">
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Awareness Africa Foundation
           </Link>
           <div className="flex gap-6 items-center">
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-300">Share Initiative</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-300">Initiative Brief</span>
             <Share2 size={16} className="text-slate-300 cursor-pointer hover:text-[#E91E63] transition-colors" />
           </div>
         </div>
       </div>
 
-      <header className="relative pt-32 pb-48 px-6 bg-[#E91E63] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none grayscale brightness-200">
-           <img src="https://images.unsplash.com/photo-1529391409740-59f2dea08bc6?q=80&w=2000" alt="Pattern" className="w-full h-full object-cover" />
-        </div>
+      {/* Hero Section - Pink Background standard */}
+      <header className="pt-32 pb-48 px-6 bg-[#E91E63] text-white overflow-hidden relative">
+        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]" />
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-            <span className="text-[14px] uppercase tracking-[0.6em] font-bold text-white mb-10 block">Initiative Spotlight</span>
-            <h1 className="text-5xl md:text-[7rem] font-display font-bold text-white mb-12 leading-[0.9] tracking-tight">
-              HerAwareness <br/>Africa
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ duration: 1 }}
+          >
+            <div className="flex items-center gap-4 mb-10">
+              <div className="h-px w-12 bg-white" />
+              <span className="text-[14px] uppercase tracking-[0.6em] font-bold text-white block">Flagship Initiative</span>
+            </div>
+            <h1 className="text-5xl md:text-[8rem] font-display font-bold text-white mb-12 leading-[0.85] tracking-tighter">
+              HER AWARENESS <br/>AFRICA
             </h1>
-            <div className="h-1.5 w-32 bg-white mb-12" />
-            <p className="text-xl md:text-3xl text-white/90 font-display italic leading-relaxed mb-12 max-w-3xl">
+            <p className="text-2xl md:text-4xl text-white/80 font-display italic leading-tight mb-12 max-w-4xl">
               Empowering Young Women in Southern Kaduna
             </p>
+            <div className="flex flex-wrap gap-x-8 gap-y-4 text-[11px] uppercase tracking-[0.3em] font-bold text-white border-t border-white/20 pt-10">
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-white" /> Mentorship</span>
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-white" /> Education</span>
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-white" /> Sexual & Reproductive Health</span>
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-white" /> Confidence</span>
+            </div>
           </motion.div>
         </div>
       </header>
 
-      <SectionDivider />
-      
+      {/* Background & Rationale */}
       <section className="py-40 px-6">
-        <div className="max-w-3xl mx-auto">
-          <motion.div {...revealProps}>
-            <h2 className="text-[40px] font-display font-bold text-slate-900 mb-14 block tracking-tighter">Executive Summary</h2>
-            <div className="space-y-10 text-lg text-slate-600 leading-relaxed font-light">
-              <p>HerAwareness Africa is dedicated to dismantling the systemic barriers that prevent girls in Northern Nigeria from reaching their full academic potential.</p>
-              <p>We move beyond awareness, implementing structured programs that address physical, emotional, and social realities. By focusing on health and education, we ensure no girl compromises her future.</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <SectionDivider />
-      <section className="py-24 px-6 flex flex-col md:flex-row items-center justify-between gap-12 bg-white">
-        <div className="max-w-md">
-          <p className="text-[14px] uppercase tracking-[0.4em] font-bold text-slate-400 mb-6">Institutional Link</p>
-          <p className="text-2xl font-display font-bold text-slate-900">A flagship initiative of the <br/>Awareness Africa Foundation.</p>
-        </div>
-        <Link to="/">
-          <Button variant="outline" noCaps className="px-12">Return to headquarters</Button>
-        </Link>
-      </section>
-    </div>
-  );
-};
-
-const MenForwardPage: React.FC = () => {
-  const [activeStory, setActiveStory] = useState(0);
-  const stories = [
-    {
-      text: "Growing up, I was taught that silence was my only shield. MenForward gave me a different vocabulary. I realized my vulnerability wasn't a defect; it was a bridge to healing.",
-      author: "David K.",
-      location: "Lagos, Nigeria"
-    },
-    {
-      text: "The digital peer circles provide a level of anonymity that many men need to start the conversation. Once the threshold is crossed, the support is life-changing.",
-      author: "Samuel A.",
-      location: "Program Participant"
-    }
-  ];
-
-  return (
-    <div className="bg-white min-h-screen text-slate-900">
-      <div className="bg-white border-b border-slate-50 py-6 px-6 sticky top-[72px] z-40">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 hover:text-black transition-colors group">
-            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Awareness Africa Foundation
-          </Link>
-          <div className="flex gap-6 items-center">
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-300">Initiative Documentation</span>
-            <Share2 size={16} className="text-slate-300 cursor-pointer hover:text-[#1976D2] transition-colors" />
-          </div>
-        </div>
-      </div>
-
-      <header className="relative pt-32 pb-48 px-6 bg-[#1976D2] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none grayscale brightness-150">
-           <img src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=2000" alt="Pattern" className="w-full h-full object-cover" />
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
-            <span className="text-[14px] uppercase tracking-[0.6em] font-bold text-white mb-10 block">Flagship Initiative</span>
-            <h1 className="text-6xl md:text-[8.5rem] font-display font-bold text-white mb-12 leading-[0.85] tracking-tight">
-              MENFORWARD <br/>AFRICA
-            </h1>
-            <div className="h-1.5 w-32 bg-white mb-12" />
-            <p className="text-2xl md:text-4xl text-white/90 font-display italic leading-tight mb-12 max-w-4xl">
-              Advancing Men’s Mental Health, Wellbeing & Resilience in Africa.
-            </p>
-            <p className="text-[11px] uppercase tracking-[0.4em] font-bold text-white/60">
-              Institutionally Grounded / Data-Driven / Trust-Oriented
-            </p>
-          </motion.div>
-        </div>
-      </header>
-
-      <SectionDivider />
-
-      <section className="py-40 px-6">
-        <div className="max-w-3xl mx-auto">
-          <motion.div {...revealProps}>
-            <h2 className="text-[40px] font-display font-bold text-slate-900 mb-14 block tracking-tighter">Executive Summary</h2>
-            <div className="space-y-12 text-xl md:text-2xl text-slate-800 leading-[1.7] font-light">
-              <p>
-                MenForward Africa is a pan-African mental health and wellbeing initiative focused on
-                normalizing emotional expression, reducing suicide, and improving access to mental
-                health support for men and boys, in Nigeria and Africa at large.
-              </p>
-              <p>
-                Globally, suicide is one of the leading causes of death among men. According to the World
-                Health Organization (WHO), men account for approximately 77–80% of suicide deaths
-                worldwide. In Nigeria, available data indicates that men account for roughly 75–80% of
-                reported suicide deaths, with young and middle-aged men disproportionately affected.
-              </p>
-              <p>
-                Despite these figures, mental health programming in Nigeria and across Africa remains
-                heavily skewed toward women and children, leaving men underserved, stigmatized, and
-                reluctant to seek help.
-              </p>
-              <p>
-                MenForward Africa exists to bridge this gap by creating safe, culturally relevant, and
-                non-shaming spaces where men can access education, peer support, and professional mental
-                health resources—primarily through digital platforms to ensure scale and accessibility.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section className="py-40 px-6 bg-slate-50">
         <div className="max-w-4xl mx-auto">
-          <motion.div {...revealProps} className="space-y-14">
-            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-900 mb-4 block">Founder’s Statement</h2>
-            <div className="relative">
-              <div className="text-xl md:text-2xl text-slate-800 leading-relaxed font-light space-y-8 border-l-4 border-[#1976D2] pl-10">
-                <p className="italic font-medium">“MenForward Africa was born from a deeply personal and urgent realization:
-                While conversations around mental health are gradually gaining visibility in Africa, men are still
-                largely left behind.</p>
-                
-                <p>In Nigeria and the continent, men are raised to be strong, silent, and self-sufficient. From a
-                young age, many boys are taught explicitly or implicitly that vulnerability is weakness, that
-                asking for help is failure, and that emotional pain should be endured in isolation. Over time, this
-                silence compounds. It shows up as depression, anger, withdrawal, substance abuse, and in far
-                too many cases, suicide.</p>
-                
-                <p>Recent events and public conversations have once again highlighted a painful truth: men are
-                dying quietly. Not because help does not exist, but because many men do not feel permitted to
-                seek it. At MenForward Africa, we believe this must change.</p>
-                
-                <p>MenForward Africa exists to create safe, non-judgmental spaces where men can speak
-                honestly, be heard, and access the support they need—without shame, without labels, and
-                without fear of being misunderstood. Our work is rooted in the understanding that men’s mental
-                health is not in opposition to women’s wellbeing; rather, healthy men build healthier families,
-                communities, and societies.</p>
-                
-                <p>This initiative is also informed by lived experience and professional insight. Growing up around
-                medical and family health practice reinforced the reality that emotional wellbeing is as critical as
-                physical health—yet far less prioritized, especially for men. At the same time, MenForward
-                Africa is intentionally designed to be peer-led, modern, and culturally relevant, recognizing
-                that men are often more receptive to voices they can relate to.</p>
-                
-                <p className="font-bold">Our vision is simple but powerful:</p>
-                <p className="text-2xl md:text-3xl font-display font-bold text-slate-900">To move men forward—from silence to expression, from isolation to community, and from crisis
-                to resilience.</p>
-                
-                <p>MenForward Africa is not just a response to a mental health crisis. It is a commitment to
-                prevention, education, and long-term cultural change—one conversation, one connection,
-                and one life at a time.”</p>
-              </div>
+          <motion.div {...revealProps}>
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 mb-12 block">Background & Rationale</h2>
+            <div className="space-y-10 text-xl md:text-2xl text-slate-800 leading-[1.6] font-light">
+              <p>
+                Young women in Southern Kaduna, Nigeria, face significant challenges in education, career development, and sexual health. Many drop out of school due to early pregnancies, lack of financial support, or lack of self-belief. Most girls lack guidance to make informed decisions.
+              </p>
+              <p>
+                At the same time, early sexual activity without knowledge of reproductive health has led to high rates of teenage pregnancy and sexually transmitted infections (including HIV). While HIV treatment is free, prevention and sexual health education remain under-emphasized.
+              </p>
+              <p className="font-medium text-slate-900">
+                This NGO seeks to break this cycle by providing mentorship, education, and empowerment to young ladies—equipping them with career direction and essential knowledge about sexual health.
+              </p>
             </div>
           </motion.div>
         </div>
@@ -235,113 +112,50 @@ const MenForwardPage: React.FC = () => {
 
       <SectionDivider />
 
+      {/* Mission & Vision */}
+      <section className="py-40 px-6 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
+          <motion.div {...revealProps} className="space-y-10 border-l-[6px] border-[#E91E63] pl-10">
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 block">Mission Statement</h2>
+            <p className="text-3xl font-display font-bold text-slate-900 leading-tight">
+              To empower young women in Southern Kaduna with the knowledge, guidance, and self-belief to make informed career choices and take control of their sexual and reproductive health.
+            </p>
+          </motion.div>
+          <motion.div {...revealProps} transition={{ delay: 0.2 }} className="space-y-10 border-l-[6px] border-slate-900 pl-10">
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 block">Vision Statement</h2>
+            <p className="text-3xl font-display font-bold text-slate-900 leading-tight">
+              A future where every young woman in Southern Kaduna is confident, educated, and empowered to build a meaningful career and contribute positively to society.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Purpose & Objectives */}
       <section className="py-40 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div {...revealProps} className="mb-24">
-            <h2 className="text-[14px] uppercase tracking-[0.4em] font-black text-slate-500 mb-8">Problem Statement</h2>
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 mb-8 block">Purpose & Objectives</h2>
             <div className="h-px w-full bg-slate-100" />
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-            <motion.div {...revealProps} className="space-y-16">
-              <div>
-                <h3 className="text-[40px] font-display font-bold text-slate-900 mb-8">Global Context</h3>
-                <ul className="space-y-6">
-                  <li className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1976D2] mt-2 shrink-0" />
-                    <p className="text-slate-600">Over 700,000 people die by suicide annually worldwide (WHO).</p>
-                  </li>
-                  <li className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1976D2] mt-2 shrink-0" />
-                    <p className="text-slate-600">Men account for approximately 77–80% of these deaths.</p>
-                  </li>
-                  <li className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1976D2] mt-2 shrink-0" />
-                    <p className="text-slate-600">Suicide is among the top 10 causes of death globally, and among the top causes for men aged 15–49.</p>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-[40px] font-display font-bold text-slate-900 mb-8">Africa & Nigeria Context</h3>
-                <ul className="space-y-6">
-                  <li className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1976D2] mt-2 shrink-0" />
-                    <p className="text-slate-600">Africa has some of the most underreported suicide cases globally due to stigma, religious beliefs, and weak data systems.</p>
-                  </li>
-                  <li className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1976D2] mt-2 shrink-0" />
-                    <p className="text-slate-600">Nigeria records an estimated 15,000+ suicide deaths annually (WHO & public health estimates).</p>
-                  </li>
-                  <li className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1976D2] mt-2 shrink-0" />
-                    <p className="text-slate-600">Based on gender trends, approximately 11,000–12,000 of these deaths are men.</p>
-                  </li>
-                  <li className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1976D2] mt-2 shrink-0" />
-                    <p className="text-slate-600">Suicide rates in Nigeria are estimated at 6–7 deaths per 100,000 people, with men making up the overwhelming majority.</p>
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
-
-            <motion.div {...revealProps} className="space-y-16">
-              <div>
-                <h3 className="text-[40px] font-display font-bold text-slate-900 mb-8">Age Groups Most Affected</h3>
-                <div className="space-y-8">
-                   <div className="p-6 bg-slate-50 border-l-4 border-[#1976D2]">
-                      <p className="font-bold text-slate-900 mb-2">15–29 years</p>
-                      <p className="text-sm text-slate-500 italic">Youth unemployment, identity crisis, peer pressure</p>
-                   </div>
-                   <div className="p-6 bg-slate-50 border-l-4 border-[#1976D2]">
-                      <p className="font-bold text-slate-900 mb-2">30–49 years</p>
-                      <p className="text-sm text-slate-500 italic">Financial stress, family responsibility, societal expectations</p>
-                   </div>
-                   <div className="p-6 bg-slate-50 border-l-4 border-[#1976D2]">
-                      <p className="font-bold text-slate-900 mb-2">50+ years</p>
-                      <p className="text-sm text-slate-500 italic">Isolation, health decline, loss of purpose</p>
-                   </div>
-                </div>
-              </div>
-
-              <div className="p-10 bg-[#1976D2] text-white">
-                 <AlertCircle size={32} className="mb-6 opacity-40" />
-                 <p className="text-xl font-display leading-relaxed">
-                   Studies suggest that <span className="font-bold">1 in 5 Nigerian men</span> will experience depression, severe psychological distress, or suicidal ideation at some point in their lives—and yet very few seek help.
-                 </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section className="py-40 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div {...revealProps} className="max-w-4xl mb-24">
-            <h2 className="text-[14px] font-display font-bold text-[#1976D2] mb-6 block leading-tight uppercase tracking-[0.5em]">Strategic Roadmap</h2>
-            <h3 className="text-[40px] font-display font-bold text-slate-900 mb-10 leading-tight">Scale Trust via <br/>Non-Shaming Access.</h3>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
             {[
-              { id: "01", title: "Target 01", text: "Eradicate male mental health stigma." },
-              { id: "02", title: "Target 02", text: "Broaden access to vetted clinical therapy." },
-              { id: "03", title: "Target 03", text: "Establish anonymous digital peer networks." },
-              { id: "04", title: "Target 04", text: "Curate masculine-sensitive mental health data." }
+              "To guide young girls in choosing career paths aligned with their strengths and aspirations.",
+              "To reduce school drop-out rates by inspiring girls to see the value of education.",
+              "To promote sexual health education, reducing early pregnancies and STIs/HIV cases.",
+              "To instill confidence, self-belief, and a sense of purpose in young women.",
+              "To build a network of mentors, facilitators, and peers who can continue to support them beyond the program."
             ].map((obj, i) => (
               <motion.div 
                 key={i} 
-                whileHover={{ y: -10 }}
-                className="relative p-12 bg-white border-2 border-slate-100 shadow-lg hover:border-[#1976D2] transition-all duration-500 flex flex-col items-center text-center group"
+                {...revealProps}
+                transition={{ delay: i * 0.1 }}
+                className="flex gap-6"
               >
-                <div className="absolute top-0 right-0 p-4 opacity-10 font-display text-4xl font-bold group-hover:opacity-100 transition-opacity">
-                   {obj.id}
-                </div>
-                <div className="w-16 h-1 bg-[#1976D2] mb-10" />
-                <h4 className="text-[11px] uppercase tracking-[0.4em] font-black text-slate-400 mb-6 group-hover:text-[#1976D2] transition-colors">{obj.title}</h4>
-                <p className="text-xl font-display font-bold text-slate-900 leading-tight">{obj.text}</p>
+                <div className="text-[#E91E63] pt-1"><Target size={20} /></div>
+                <p className="text-lg text-slate-600 font-light leading-relaxed">{obj}</p>
               </motion.div>
             ))}
           </div>
@@ -350,29 +164,105 @@ const MenForwardPage: React.FC = () => {
 
       <SectionDivider />
 
+      {/* Core Focus Areas / Workshop */}
       <section className="py-40 px-6 bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto">
           <motion.div {...revealProps} className="mb-24">
-            <h2 className="text-[14px] uppercase tracking-[0.4em] font-black text-white mb-8">Intervention Framework</h2>
-            <div className="h-px w-full bg-white/10" />
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-white/40 mb-8 block">Core Focus Areas</h2>
+            <h3 className="text-4xl font-display font-bold mb-4">2-Day Workshop Program</h3>
+            <p className="text-white/40 tracking-widest uppercase text-[10px] font-bold">First Cohort Implementation</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 border border-white/10">
+            {/* Day 1 */}
+            <motion.div {...revealProps} className="p-16 bg-slate-900 space-y-12">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#E91E63] flex items-center justify-center text-[#E91E63] font-bold">01</div>
+                <h4 className="text-2xl font-display font-bold">DAY 1: Education & Career Empowerment</h4>
+              </div>
+              
+              <div className="space-y-10">
+                <div className="space-y-4">
+                  <h5 className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#E91E63]">Discovering Your Strengths</h5>
+                  <ul className="space-y-2 text-white/60 text-sm font-light">
+                    <li>• How to choose between Science, Arts, and Commercial classes.</li>
+                    <li>• Career pathways (medicine, law, business, ICT, etc.).</li>
+                    <li>• Activity: Career assessment quiz.</li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h5 className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#E91E63]">Building Self-Belief</h5>
+                  <ul className="space-y-2 text-white/60 text-sm font-light">
+                    <li>• Breaking limiting beliefs (“girls can’t…”).</li>
+                    <li>• Importance of confidence and personal vision.</li>
+                    <li>• Activity: Write your future self letter.</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Day 2 */}
+            <motion.div {...revealProps} transition={{ delay: 0.2 }} className="p-16 bg-slate-900 space-y-12">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#E91E63] flex items-center justify-center text-[#E91E63] font-bold">02</div>
+                <h4 className="text-2xl font-display font-bold">DAY 2: Sexual Health & Personal Growth</h4>
+              </div>
+              
+              <div className="space-y-10">
+                <div className="space-y-4">
+                  <h5 className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#E91E63]">Understanding Your Body</h5>
+                  <ul className="space-y-2 text-white/60 text-sm font-light">
+                    <li>• Basics of menstruation, ovulation, safe periods, and contraception.</li>
+                    <li>• Risks of unprotected sex (STIs, HIV, teenage pregnancy).</li>
+                    <li>• Myths vs facts about sexual health.</li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h5 className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#E91E63]">Healthy Decision-Making</h5>
+                  <ul className="space-y-2 text-white/60 text-sm font-light">
+                    <li>• Saying no to pressure, consent, and boundaries.</li>
+                    <li>• Peer influence and self-worth.</li>
+                    <li>• Role-play: How to respond to difficult situations.</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="mt-20 p-12 bg-white/5 border border-white/10 text-center">
+            <h5 className="text-[11px] uppercase tracking-[0.4em] font-bold text-[#E91E63] mb-6">Closing Session</h5>
+            <p className="text-xl font-display text-white/80 max-w-2xl mx-auto italic">
+              "Living with Purpose & Giving Back: Long-term visioning, inspiring stories from mentors, group pledge, and distribution of sanitary pads."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* NGO ROLES */}
+      <section className="py-40 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...revealProps} className="mb-24">
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 mb-8 block">Operational Structure</h2>
+            <h3 className="text-4xl font-display font-bold">Proposed NGO Roles</h3>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Digital Peer Circles", desc: "Moderated, confidential digital spaces for peer-to-peer resilience building." },
-              { title: "MenForward Talks", desc: "Strategic webinars featuring clinical experts and relatable community leaders." },
-              { title: "Youth Mental Health", desc: "Emotional literacy curricula adapted for boys in secondary education." },
-              { title: "Referral Network", desc: "A direct bridge to masculine-sensitive clinical psychologists and resources." },
-              { title: "Advocacy & Awareness", desc: "Data-driven storytelling campaigns to humanize the male experience." },
-              { title: "Strategic Research", desc: "Publishing quarterly insights on regional male mental health trends." }
-            ].map((prog, i) => (
+              { role: "Program Director", desc: "Overall strategy, direction, facilitation, and project management." },
+              { role: "Program Coordinator", desc: "Logistics, hall setup, participant coordination, and records." },
+              { role: "Media & Communications Officer", desc: "Photography, video, storytelling, and social media." },
+              { role: "Welfare Officer", desc: "Participant well-being, refreshments, and materials distribution." },
+              { role: "Monitoring & Evaluation Lead", desc: "Impact tracking, feedback collection, and reporting." }
+            ].map((r, i) => (
               <motion.div 
                 key={i} 
-                {...revealProps}
-                className="p-16 bg-slate-900 hover:bg-[#1976D2]/10 transition-colors duration-500"
+                whileHover={{ y: -5 }}
+                className="p-10 border border-slate-100 bg-slate-50/50 flex flex-col justify-between group"
               >
-                <h4 className="text-2xl font-display font-bold mb-6">{prog.title}</h4>
-                <p className="text-sm text-white/40 font-light leading-relaxed">{prog.desc}</p>
+                <div className="space-y-4">
+                   <h4 className="text-lg font-bold text-slate-900 group-hover:text-[#E91E63] transition-colors">{r.role}</h4>
+                   <p className="text-sm text-slate-500 font-light leading-relaxed">{r.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -381,94 +271,102 @@ const MenForwardPage: React.FC = () => {
 
       <SectionDivider />
 
-      <section className="py-40 px-6 bg-slate-50">
-        <div className="max-w-4xl mx-auto text-center relative">
-          <MessageSquare size={64} className="text-[#1976D2]/5 absolute -top-12 left-1/2 -translate-x-1/2 pointer-events-none" />
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeStory}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="space-y-14"
-            >
-              <p className="text-3xl md:text-5xl font-display font-bold text-slate-900 leading-tight">
-                "{stories[activeStory].text}"
-              </p>
-              <div>
-                <p className="text-sm uppercase tracking-widest font-black text-slate-900">{stories[activeStory].author}</p>
-                <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-400 mt-3">{stories[activeStory].location}</p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-          <div className="flex justify-center gap-10 mt-20">
-            <button 
-              onClick={() => setActiveStory((prev) => (prev - 1 + stories.length) % stories.length)}
-              className="p-5 border border-slate-200 hover:border-[#1976D2] transition-colors"
-            >
-              <ChevronLeft size={22} className="text-slate-400" />
-            </button>
-            <button 
-              onClick={() => setActiveStory((prev) => (prev + 1) % stories.length)}
-              className="p-5 border border-slate-200 hover:border-[#1976D2] transition-colors"
-            >
-              <ChevronRight size={22} className="text-slate-400" />
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* NEXT STEPS (COHORT ROADMAP) - Animated Right to Left */}
+      <section className="py-40 px-6 bg-slate-50 overflow-hidden">
+        <div className="max-w-4xl mx-auto">
+          <motion.div {...revealProps} className="space-y-16">
+            <div>
+              <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-[#E91E63] mb-8 block">Our Cohort Roadmap</h2>
+              <h3 className="text-4xl font-display font-bold mb-10">Strategic Preparation Framework</h3>
+            </div>
 
-      <SectionDivider />
-
-      <section className="py-32 px-6 bg-white text-center">
-        <div className="max-w-3xl mx-auto">
-          <motion.div {...revealProps}>
-            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-[#1976D2] mb-8 block">Brotherhood & Growth</h2>
-            <h3 className="text-[40px] font-display font-bold text-slate-900 mb-10 leading-tight">
-              The Power of <br/>Shared Resilience.
-            </h3>
-            <p className="text-lg text-slate-600 font-light leading-relaxed mb-12">
-              Isolation is the enemy of progress. True strength is found in accountability—joining a group of men who support, challenge, and uplift one another. Our community provides a safe, non-judgmental architecture for honest growth and lasting emotional health.
-            </p>
-            <a 
-              href="https://wa.me/your-whatsapp-link" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-4 bg-[#25D366] text-white px-10 py-6 text-base md:text-lg font-bold uppercase tracking-[0.2em] hover:bg-[#128C7E] transition-all duration-500 shadow-xl group"
-            >
-              <MessageCircle size={28} fill="currentColor" className="group-hover:scale-110 transition-transform" /> 
-              Join Our Community of great men
-            </a>
+            <div className="space-y-8">
+              {[
+                "Secure Venue – book the hall early to avoid last-minute issues.",
+                "Develop Training Materials – PowerPoints, handouts, visual aids (English & Hausa).",
+                "Translate Key Terms into Hausa for clarity (sexual health concepts, career paths).",
+                "Budgeting – hall, refreshments, airtime giveaways, sanitary pads, media coverage.",
+                "Outreach & Selection – select 30 girls via schools, churches, mosques, community leaders.",
+                "Media Prep – intro video and graphics for WhatsApp and social media.",
+                "Branded Items – sanitary pad packaging and team wear."
+              ].map((step, i) => (
+                <motion.div 
+                  key={i} 
+                  {...staggerReveal(i)}
+                  className="flex gap-6 items-start"
+                >
+                   <div className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">{i + 1}</div>
+                   <p className="text-lg text-slate-700 font-light">{step}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
 
       <SectionDivider />
 
-      <section className="py-40 px-6 bg-slate-900 text-white overflow-hidden relative">
+      {/* SUPPORT & INCENTIVES */}
+      <section className="py-40 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...revealProps} className="mb-24">
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 mb-8 block">Session Support</h2>
+            <h3 className="text-4xl font-display font-bold">Incentives & Follow-up</h3>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="flex gap-8 p-10 bg-white border border-slate-100 shadow-sm">
+               <Award size={40} className="text-[#E91E63] shrink-0" />
+               <div className="space-y-4">
+                  <h4 className="text-xl font-bold">Participation Assets</h4>
+                  <ul className="space-y-2 text-slate-500 text-sm font-light">
+                    <li>• Airtime giveaways for active participation.</li>
+                    <li>• Sanitary pads for all girls (health and dignity).</li>
+                    <li>• Certificates of Participation (adds prestige).</li>
+                  </ul>
+               </div>
+            </div>
+            <div className="flex gap-8 p-10 bg-white border border-slate-100 shadow-sm">
+               <MessageCircle size={40} className="text-[#E91E63] shrink-0" />
+               <div className="space-y-4">
+                  <h4 className="text-xl font-bold">Continuity Framework</h4>
+                  <p className="text-sm text-slate-500 font-light leading-relaxed">
+                    Follow-up WhatsApp group for continued mentorship and peer support beyond the program cycle.
+                  </p>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* GET INVOLVED */}
+      <section className="py-40 px-6 bg-slate-900 text-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <motion.div {...revealProps}>
-            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-[#1976D2] mb-12 block">Resource Allocation</h2>
-            <h3 className="text-5xl md:text-[6.5rem] font-display font-bold mb-12 leading-[0.9]">SUPPORT <br/>CHANGE.</h3>
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-[#E91E63] mb-12 block">Resource Allocation</h2>
+            <h3 className="text-5xl md:text-[6.5rem] font-display font-bold mb-12 leading-[0.9]">GET <br/>INVOLVED.</h3>
             <p className="text-white/40 font-light text-xl max-w-lg mb-12">
-              Join our network of institutional partners and professional advisors to expand the architecture of male mental health across Africa.
+              Join our network of facilitators and donors to scale this intervention across Southern Kaduna.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {[
-              { label: "Donate", icon: <Heart size={20} />, action: "Sponsor Operations" },
-              { label: "Volunteer", icon: <Users size={20} />, action: "Clinical Advisor" },
-              { label: "Sponsor", icon: <FileText size={20} />, action: "Program Partner" },
-              { label: "Partner", icon: <Target size={20} />, action: "Institutional Ally" }
+              { label: "Donate", icon: <Heart size={20} />, action: "Support Operations", onClick: undefined },
+              { label: "Volunteer", icon: <Users size={20} />, action: "Mentorship Circle", onClick: undefined },
+              { label: "Sponsor", icon: <Award size={20} />, action: "Cohort Lead", onClick: undefined },
+              { label: "Apply Here", icon: <FileEdit size={20} />, action: "Participant Entry", onClick: handleApplyClick },
+              { label: "Partner", icon: <ShieldCheck size={20} />, action: "Institutional Ally", onClick: undefined }
             ].map((cta, i) => (
               <motion.button 
                 key={i}
                 whileTap={{ scale: 0.98 }}
-                className="p-12 border border-white/10 bg-white/5 hover:bg-[#1976D2] transition-all duration-300 text-left group"
+                onClick={cta.onClick}
+                className="p-12 border border-white/10 bg-white/5 hover:bg-[#E91E63] transition-all duration-300 text-left group"
               >
-                <div className="text-[#1976D2] group-hover:text-white mb-10 transition-colors">{cta.icon}</div>
+                <div className="text-[#E91E63] group-hover:text-white mb-10 transition-colors">{cta.icon}</div>
                 <h4 className="text-xs uppercase tracking-[0.4em] font-black mb-3">{cta.label}</h4>
                 <p className="text-white/40 group-hover:text-white/80 text-[10px] uppercase tracking-widest font-bold transition-colors">{cta.action}</p>
               </motion.button>
@@ -479,6 +377,224 @@ const MenForwardPage: React.FC = () => {
 
       <SectionDivider />
 
+      {/* Footer HQ Link */}
+      <section className="py-24 px-6 flex flex-col md:flex-row items-center justify-between gap-12 bg-white">
+        <div className="max-w-md">
+          <p className="text-[14px] uppercase tracking-[0.4em] font-bold text-slate-400 mb-6">Unified Headquarters</p>
+          <p className="text-2xl font-display font-bold text-slate-900 leading-tight">A flagship initiative of the <br/>Awareness Africa Foundation.</p>
+        </div>
+        <Link to="/" className="w-full md:w-auto">
+          <Button 
+            variant="outline" 
+            noCaps 
+            className="w-full md:w-auto border-slate-200 text-slate-600 px-14 font-light"
+          >
+            Return to headquarters
+          </Button>
+        </Link>
+      </section>
+    </div>
+  );
+};
+
+// MenForwardPage component remains stable
+const MenForwardPage: React.FC = () => {
+  return (
+    <div className="bg-white min-h-screen selection:bg-[#1976D2] selection:text-white">
+      {/* Institutional Breadcrumb */}
+      <div className="bg-white border-b border-slate-50 py-6 px-6 sticky top-[72px] z-40">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 hover:text-black transition-colors group">
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Awareness Africa Foundation
+          </Link>
+          <div className="flex gap-6 items-center">
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-300">Initiative Brief</span>
+            <Share2 size={16} className="text-slate-300 cursor-pointer hover:text-[#1976D2] transition-colors" />
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <header className="pt-32 pb-40 px-6 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ duration: 1 }}
+          >
+            <div className="flex items-center gap-4 mb-10">
+              <div className="h-px w-12 bg-[#1976D2]" />
+              <span className="text-[14px] uppercase tracking-[0.6em] font-bold text-[#1976D2] block">Flagship Initiative</span>
+            </div>
+            <h1 className="text-5xl md:text-[8rem] font-display font-bold text-slate-900 mb-12 leading-[0.85] tracking-tighter">
+              MEN FORWARD <br/>AFRICA
+            </h1>
+            <p className="text-2xl md:text-4xl text-slate-500 font-display italic leading-tight mb-12 max-w-4xl">
+              Redefining Strength & Normalizing Mental Well-being
+            </p>
+            <div className="flex flex-wrap gap-x-8 gap-y-4 text-[11px] uppercase tracking-[0.3em] font-bold text-slate-400 border-t border-slate-100 pt-10">
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-[#1976D2]" /> Mental Health Support</span>
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-[#1976D2]" /> Suicide Prevention</span>
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-[#1976D2]" /> Emotional Literacy</span>
+              <span className="flex items-center gap-2"><CheckCircle2 size={14} className="text-[#1976D2]" /> Safe Spaces</span>
+            </div>
+          </motion.div>
+        </div>
+      </header>
+
+      <SectionDivider />
+
+      {/* Background & Rationale */}
+      <section className="py-40 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div {...revealProps}>
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 mb-12 block">Background & Rationale</h2>
+            <div className="space-y-10 text-xl md:text-2xl text-slate-800 leading-[1.6] font-light">
+              <p>
+                Across Africa, and particularly in Southern Kaduna, young men face an intense "silence crisis." Traditional definitions of masculinity often exclude emotional vulnerability, leading to suppressed trauma and high rates of undiagnosed mental health struggles.
+              </p>
+              <p>
+                Recent data highlights a worrying trend in male suicide rates, often linked to economic pressure, loss of purpose, and the lack of safe, non-judgmental platforms for expression. Many young men feel they must "carry the world" without the tools to manage their internal emotional landscape.
+              </p>
+              <p className="font-medium text-slate-900">
+                MenForward Africa addresses this by normalizing the conversation around male mental health and providing culturally relevant support systems that redefine strength as resilience and self-awareness.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Mission & Vision */}
+      <section className="py-40 px-6 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
+          <motion.div {...revealProps} className="space-y-10 border-l-[6px] border-[#1976D2] pl-10">
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 block">Mission Statement</h2>
+            <p className="text-3xl font-display font-bold text-slate-900 leading-tight">
+              To normalize emotional expression and provide accessible mental health support for young African men through peer networks and culturally sensitive interventions.
+            </p>
+          </motion.div>
+          <motion.div {...revealProps} transition={{ delay: 0.2 }} className="space-y-10 border-l-[6px] border-slate-900 pl-10">
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 block">Vision Statement</h2>
+            <p className="text-3xl font-display font-bold text-slate-900 leading-tight">
+              An Africa where every young man feels safe to speak his truth, supported in his healing, and empowered to lead with both strength and empathy.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Purpose & Objectives */}
+      <section className="py-40 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...revealProps} className="mb-24">
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 mb-8 block">Purpose & Objectives</h2>
+            <div className="h-px w-full bg-slate-100" />
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+            {[
+              "To break the stigma surrounding male mental health and suicide in local communities.",
+              "To provide safe spaces for peer-led dialogue and emotional release.",
+              "To equip men with emotional intelligence and healthy coping mechanisms.",
+              "To reduce suicide rates among young men through early intervention and awareness.",
+              "To build a network of mentors and therapists specialized in male-specific challenges."
+            ].map((obj, i) => (
+              <motion.div 
+                key={i} 
+                {...revealProps}
+                transition={{ delay: i * 0.1 }}
+                className="flex gap-6"
+              >
+                <div className="text-[#1976D2] pt-1"><Target size={20} /></div>
+                <p className="text-lg text-slate-600 font-light leading-relaxed">{obj}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Core Focus Areas */}
+      <section className="py-40 px-6 bg-slate-900 text-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...revealProps} className="mb-24">
+            <h2 className="text-[14px] uppercase tracking-[0.5em] font-bold text-white/40 mb-8 block">Core Focus Areas</h2>
+            <h3 className="text-4xl font-display font-bold mb-4">The "Safe Haven" Workshop</h3>
+            <p className="text-white/40 tracking-widest uppercase text-[10px] font-bold">Mental Well-being Implementation</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 border border-white/10">
+            {/* Day 1 */}
+            <motion.div {...revealProps} className="p-16 bg-slate-900 space-y-12">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#1976D2] flex items-center justify-center text-[#1976D2] font-bold">01</div>
+                <h4 className="text-2xl font-display font-bold">DAY 1: Unmasking Masculinity</h4>
+              </div>
+              
+              <div className="space-y-10">
+                <div className="space-y-4">
+                  <h5 className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1976D2]">Emotional Literacy</h5>
+                  <ul className="space-y-2 text-white/60 text-sm font-light">
+                    <li>• Identifying emotions beyond anger and pride.</li>
+                    <li>• The impact of cultural expectations on male psyche.</li>
+                    <li>• Activity: The "Mask We Wear" workshop.</li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h5 className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1976D2]">Healing from Within</h5>
+                  <ul className="space-y-2 text-white/60 text-sm font-light">
+                    <li>• Addressing childhood trauma and social pressure.</li>
+                    <li>• Building resilience without suppression.</li>
+                    <li>• Activity: Guided group reflection.</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Day 2 */}
+            <motion.div {...revealProps} transition={{ delay: 0.2 }} className="p-16 bg-slate-900 space-y-12">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#1976D2] flex items-center justify-center text-[#1976D2] font-bold">02</div>
+                <h4 className="text-2xl font-display font-bold">DAY 2: Purpose & Connection</h4>
+              </div>
+              
+              <div className="space-y-10">
+                <div className="space-y-4">
+                  <h5 className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1976D2]">Healthy Connections</h5>
+                  <ul className="space-y-2 text-white/60 text-sm font-light">
+                    <li>• Building meaningful brotherhood and support networks.</li>
+                    <li>• Conflict resolution and non-violent communication.</li>
+                    <li>• Activity: Peer support circle setup.</li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h5 className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#1976D2]">Leading with Impact</h5>
+                  <ul className="space-y-2 text-white/60 text-sm font-light">
+                    <li>• Servant leadership and community responsibility.</li>
+                    <li>• Goal setting and vocational focus.</li>
+                    <li>• Role-play: Mental health check-ins with peers.</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="mt-20 p-12 bg-white/5 border border-white/10 text-center">
+            <h5 className="text-[11px] uppercase tracking-[0.4em] font-bold text-[#1976D2] mb-6">Closing Session</h5>
+            <p className="text-xl font-display text-white/80 max-w-2xl mx-auto italic">
+              "Redefining the Warrior: A pledge to protect one's peace, support others, and lead with empathy."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Footer HQ Link */}
       <section className="py-24 px-6 flex flex-col md:flex-row items-center justify-between gap-12 bg-white">
         <div className="max-w-md">
           <p className="text-[14px] uppercase tracking-[0.4em] font-bold text-slate-400 mb-6">Unified Headquarters</p>

@@ -18,22 +18,32 @@ const Contact: React.FC = () => {
 
   return (
     <main className="bg-white">
-      {/* SECTION 1 — INTRODUCTION */}
-      <section className="pt-32 pb-48 px-6 text-center border-b border-slate-50">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="max-w-4xl mx-auto"
-        >
-          <span className="text-[10px] uppercase tracking-[0.6em] font-bold text-slate-400 mb-8 block">Engagement</span>
-          <h1 className="text-5xl md:text-8xl font-display font-bold text-slate-900 mb-12 leading-[0.9]">
-            Open Channels.
-          </h1>
-          <p className="text-xl md:text-2xl font-display text-slate-600 leading-relaxed font-light max-w-2xl mx-auto italic">
-            "Awareness Africa Foundation maintains an open line for institutional partners, media representatives, and community members. We prioritize substantive inquiry and collaborative dialogue."
-          </p>
-        </motion.div>
+      {/* SECTION 1 — TRICOLOR HERO SECTION */}
+      <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden">
+        {/* Background Color Divisions */}
+        <div className="absolute inset-0 flex flex-col lg:flex-row">
+          <div className="flex-1 bg-[#C5A059] transition-all duration-700" />
+          <div className="flex-1 bg-[#E91E63] transition-all duration-700" />
+          <div className="flex-1 bg-[#1976D2] transition-all duration-700" />
+        </div>
+
+        {/* Content Overlay */}
+        <div className="relative z-10 w-full flex items-center justify-center px-6 py-32">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-4xl mx-auto text-center bg-white/10 backdrop-blur-md p-12 md:p-20 border border-white/20"
+          >
+            <span className="text-[10px] uppercase tracking-[0.6em] font-bold text-white mb-8 block">Institutional Engagement</span>
+            <h1 className="text-5xl md:text-8xl font-display font-bold text-white mb-12 leading-[0.9]">
+              Open Channels.
+            </h1>
+            <p className="text-xl md:text-2xl font-display text-white/90 leading-relaxed font-light max-w-2xl mx-auto italic">
+              "Awareness Africa Foundation maintains an open line for institutional partners, media representatives, and community members. We prioritize substantive inquiry and collaborative dialogue."
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* SECTION 2 — CONTACT PATHWAYS */}
