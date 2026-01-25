@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
       
       if (location.pathname === '/') {
         const sections = NAV_LINKS.filter(l => l.path.startsWith('#')).map(link => link.path.replace('#', ''));
@@ -36,17 +36,6 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
 
   const handleNavClick = (path: string) => {
     setIsOpen(false);
@@ -83,22 +72,26 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 ease-in-out ${
-      scrolled ? 'bg-white shadow-md py-3' : 'bg-white/95 backdrop-blur-sm py-5'
+    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 border-b ${
+      scrolled 
+        ? 'bg-white shadow-sm py-3 border-slate-100' 
+        : 'bg-white lg:bg-white/95 backdrop-blur-sm py-4 lg:py-5 border-transparent'
     }`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center gap-x-8 lg:gap-x-24">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        {/* LOGO LEFT */}
         <button 
           onClick={() => handleNavClick('#home')} 
           className="flex flex-col items-start group focus:outline-none shrink-0"
         >
-          <span className="font-display text-2xl font-bold tracking-tight uppercase leading-none text-brand-primary transition-colors duration-500 group-hover:text-brand-accent">
+          <span className="font-display text-xl sm:text-2xl font-bold tracking-tight uppercase leading-none text-brand-primary transition-colors group-hover:text-brand-accent">
             Awareness Africa
           </span>
-          <span className="text-[10px] tracking-[0.3em] font-medium uppercase opacity-60 text-brand-primary">
+          <span className="text-[9px] tracking-[0.3em] font-medium uppercase opacity-60 text-brand-primary">
             Foundation
           </span>
         </button>
 
+        {/* DESKTOP NAV */}
         <div className="hidden lg:flex items-center space-x-12">
           {NAV_LINKS.map((link) => {
             const isInitiatives = link.label === 'Initiatives';
@@ -123,18 +116,14 @@ const Navbar: React.FC = () => {
                   }}
                 >
                   <button
-                    className={`text-[10px] uppercase tracking-[0.25em] font-bold transition-colors duration-500 relative py-2 flex items-center gap-1 focus:outline-none ${
+                    className={`text-[10px] uppercase tracking-[0.25em] font-bold transition-colors py-2 flex items-center gap-1 focus:outline-none ${
                       isActive ? 'text-black' : 'text-gray-400 hover:text-gray-900'
                     }`}
                   >
                     {link.label}
-                    <ChevronDown size={12} className={`transition-transform duration-500 ${isInitiativesOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown size={12} className={`transition-transform duration-300 ${isInitiativesOpen ? 'rotate-180' : ''}`} />
                     {isActive && (
-                      <motion.div 
-                        layoutId="navUnderline"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-accent"
-                      />
+                      <motion.div layoutId="navUnderline" className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-accent" />
                     )}
                   </button>
 
@@ -144,23 +133,14 @@ const Navbar: React.FC = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-64"
                       >
-                        <div className="bg-white border border-slate-100 shadow-2xl overflow-hidden">
-                          <Link 
-                            to="/initiatives/her-awareness"
-                            onClick={() => setIsInitiativesOpen(false)}
-                            className="flex flex-col p-6 hover:bg-slate-50 transition-colors border-b border-slate-50 group"
-                          >
+                        <div className="bg-white border border-slate-100 shadow-2xl">
+                          <Link to="/initiatives/her-awareness" onClick={() => setIsInitiativesOpen(false)} className="flex flex-col p-6 hover:bg-slate-50 border-b border-slate-50 group">
                             <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#E91E63] mb-1">Empowerment</span>
                             <span className="text-sm font-display font-bold text-slate-900 group-hover:text-brand-accent transition-colors">HerAwareness Africa</span>
                           </Link>
-                          <Link 
-                            to="/initiatives/men-forward"
-                            onClick={() => setIsInitiativesOpen(false)}
-                            className="flex flex-col p-6 hover:bg-slate-50 transition-colors group"
-                          >
+                          <Link to="/initiatives/men-forward" onClick={() => setIsInitiativesOpen(false)} className="flex flex-col p-6 hover:bg-slate-50 group">
                             <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#1976D2] mb-1">Mental Well-being</span>
                             <span className="text-sm font-display font-bold text-slate-900 group-hover:text-brand-accent transition-colors">MenForward Africa</span>
                           </Link>
@@ -178,25 +158,13 @@ const Navbar: React.FC = () => {
                 onClick={() => handleNavClick(link.path)}
                 onMouseEnter={() => setHoveredLink(link.path)}
                 onMouseLeave={() => setHoveredLink(null)}
-                className={`text-[10px] uppercase tracking-[0.25em] font-bold transition-colors duration-500 relative py-2 focus:outline-none ${
+                className={`text-[10px] uppercase tracking-[0.25em] font-bold transition-colors relative py-2 focus:outline-none ${
                   isActive ? 'text-black' : 'text-gray-400 hover:text-gray-900'
                 }`}
               >
                 {link.label}
                 {isActive && (
-                  <motion.div 
-                    layoutId="navUnderline"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-accent"
-                  />
-                )}
-                {!isActive && (
-                  <motion.div 
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: isHovered ? 1 : 0 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute bottom-0 left-0 w-full h-[1px] bg-gray-200 origin-left"
-                  />
+                  <motion.div layoutId="navUnderline" className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-accent" />
                 )}
               </button>
             );
@@ -204,32 +172,33 @@ const Navbar: React.FC = () => {
           
           <button 
             onClick={openInvolvementModal}
-            className="bg-brand-primary text-white px-8 py-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-accent transition-all duration-700 ease-in-out shadow-sm hover:shadow-lg focus:outline-none"
+            className="bg-brand-primary text-white px-8 py-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-accent transition-all shadow-sm"
           >
             Donate
           </button>
         </div>
 
+        {/* MOBILE TRIGGER RIGHT */}
         <button 
-          className="lg:hidden text-brand-primary focus:outline-none p-2 transition-transform active:scale-90 z-[110]"
+          className="lg:hidden text-brand-primary focus:outline-none p-2 z-[110]"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
         >
-          {isOpen ? <X size={32} className="text-white" /> : <Menu size={32} />}
+          {isOpen ? <X size={28} className="text-white" /> : <Menu size={28} />}
         </button>
       </div>
 
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: '-100%' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-100%' }}
-            transition={{ type: 'tween', duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 bg-brand-primary z-[105] flex flex-col h-screen w-screen overflow-hidden lg:hidden"
           >
-            <div className="flex flex-col h-full justify-center px-10 md:px-20">
-              <div className="flex flex-col space-y-4 md:space-y-6 overflow-y-auto max-h-[70vh] custom-scrollbar py-10">
+            <div className="flex flex-col h-full justify-center px-8 md:px-20">
+              <div className="flex flex-col space-y-6 overflow-y-auto pt-16 pb-10">
                 {NAV_LINKS.map((link, index) => {
                   const isInitiatives = link.label === 'Initiatives';
                   const isRoute = link.path.startsWith('/');
@@ -239,85 +208,38 @@ const Navbar: React.FC = () => {
                   
                   return (
                     <div key={link.path}>
-                      <motion.button
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 + index * 0.05 }}
-                        onClick={() => {
-                          if (isInitiatives) {
-                            setIsInitiativesOpen(!isInitiativesOpen);
-                          } else {
-                            handleNavClick(link.path);
-                          }
-                        }}
-                        className={`text-5xl md:text-7xl font-display font-bold text-left transition-all duration-500 group relative flex items-center gap-4 ${
-                          isActive ? 'text-brand-accent' : 'text-white hover:text-brand-accent'
+                      <button
+                        onClick={() => isInitiatives ? setIsInitiativesOpen(!isInitiativesOpen) : handleNavClick(link.path)}
+                        className={`text-4xl sm:text-5xl font-display font-bold text-left transition-colors flex items-center gap-4 ${
+                          isActive ? 'text-brand-accent' : 'text-white'
                         }`}
                       >
-                        <span className="relative_z-10">{link.label}</span>
-                        {isInitiatives && <ChevronDown size={32} className={`transition-transform duration-500 ${isInitiativesOpen ? 'rotate-180' : ''}`} />}
-                      </motion.button>
+                        {link.label}
+                        {isInitiatives && <ChevronDown size={24} className={`transition-transform ${isInitiativesOpen ? 'rotate-180' : ''}`} />}
+                      </button>
                       
-                      {isInitiatives && (
-                        <AnimatePresence>
-                          {isInitiativesOpen && (
-                            <motion.div 
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden flex flex-col gap-4 mt-6 ml-6 border-l border-white/10 pl-8"
-                            >
-                              <Link 
-                                to="/initiatives/her-awareness" 
-                                onClick={() => setIsOpen(false)}
-                                className="text-xl font-display text-white/60 hover:text-brand-accent transition-colors"
-                              >
-                                HerAwareness Africa
-                              </Link>
-                              <Link 
-                                to="/initiatives/men-forward" 
-                                onClick={() => setIsOpen(false)}
-                                className="text-xl font-display text-white/60 hover:text-brand-accent transition-colors"
-                              >
-                                MenForward Africa
-                              </Link>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                      {isInitiatives && isInitiativesOpen && (
+                        <div className="flex flex-col gap-6 mt-6 ml-6 border-l border-white/10 pl-8">
+                          <Link to="/initiatives/her-awareness" onClick={() => setIsOpen(false)} className="text-xl font-display text-white/60">HerAwareness Africa</Link>
+                          <Link to="/initiatives/men-forward" onClick={() => setIsOpen(false)} className="text-xl font-display text-white/60">MenForward Africa</Link>
+                        </div>
                       )}
                     </div>
                   );
                 })}
               </div>
 
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-16 pt-10 border-t border-white/10"
-              >
+              <div className="mt-auto py-10 border-t border-white/10">
                  <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 mb-6">Connect With Us</p>
-                 <div className="flex flex-col space-y-2">
-                    <p className="text-2xl font-display text-white hover:text-brand-accent transition-colors duration-500 cursor-pointer">
-                      info@awarenessafrica.org
-                    </p>
-                    <p className="text-sm text-gray-500 font-medium">Kaduna, Nigeria | Pan-African Office</p>
-                 </div>
-                 
-                 <div className="flex flex-col sm:flex-row gap-4 mt-10 w-full">
-                    <button 
-                      onClick={() => {
-                        setIsOpen(false);
-                        openInvolvementModal();
-                      }} 
-                      className="bg-brand-accent text-brand-primary w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.2em] font-bold hover:bg-white transition-all duration-300"
-                    >
-                      Donate Now
-                    </button>
-                 </div>
-              </motion.div>
+                 <p className="text-xl font-display text-white mb-8">info@awarenessafrica.org</p>
+                 <button 
+                   onClick={() => { setIsOpen(false); openInvolvementModal(); }} 
+                   className="bg-brand-accent text-brand-primary w-full px-10 py-5 text-xs font-black uppercase tracking-[0.2em]"
+                 >
+                   Donate Now
+                 </button>
+              </div>
             </div>
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 -z-10 pointer-events-none"></div>
           </motion.div>
         )}
       </AnimatePresence>
