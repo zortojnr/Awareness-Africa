@@ -19,7 +19,8 @@ const Button: React.FC<ButtonProps> = ({
   type = 'button',
   noCaps = false
 }) => {
-  const baseStyles = "px-8 py-4 font-medium transition-all duration-300 border-2 flex items-center justify-center text-center";
+  // Refined padding and font-size for a more polished appearance
+  const baseStyles = "px-5 py-2.5 sm:px-6 sm:py-3 font-semibold transition-all duration-300 border-2 flex items-center justify-center text-center";
   
   const variants = {
     primary: "bg-black text-white border-black hover:bg-brand-primary hover:border-brand-primary",
@@ -30,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
     whatsapp: "bg-[#25D366] text-white border-[#25D366] hover:bg-[#128C7E] hover:border-[#128C7E]"
   };
 
-  const typography = noCaps ? "text-base tracking-normal" : "uppercase tracking-widest text-[10px] sm:text-sm";
+  const typography = noCaps ? "text-sm tracking-normal" : "uppercase tracking-[0.18em] text-[10px] sm:text-[11px]";
 
   return (
     <motion.button

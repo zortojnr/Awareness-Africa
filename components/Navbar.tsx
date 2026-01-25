@@ -74,54 +74,47 @@ const Navbar: React.FC = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 border-b ${
       scrolled 
-        ? 'bg-white shadow-sm py-3 border-slate-100' 
-        : 'bg-white lg:bg-white/95 backdrop-blur-sm py-4 lg:py-5 border-transparent'
+        ? 'bg-white shadow-sm py-2 border-slate-100' 
+        : 'bg-white py-3 lg:py-4 border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* LOGO LEFT */}
+        {/* LOGO LEFT - Refined Spacing */}
         <button 
           onClick={() => handleNavClick('#home')} 
           className="flex flex-col items-start group focus:outline-none shrink-0"
         >
-          <span className="font-display text-xl sm:text-2xl font-bold tracking-tight uppercase leading-none text-brand-primary transition-colors group-hover:text-brand-accent">
+          <span className="font-display text-lg sm:text-2xl font-bold tracking-normal uppercase leading-none text-brand-primary transition-colors group-hover:text-brand-accent">
             Awareness Africa
           </span>
-          <span className="text-[9px] tracking-[0.3em] font-medium uppercase opacity-60 text-brand-primary">
+          <span className="text-[8px] tracking-[0.3em] font-medium uppercase opacity-60 text-brand-primary">
             Foundation
           </span>
         </button>
 
         {/* DESKTOP NAV */}
-        <div className="hidden lg:flex items-center space-x-12">
+        <div className="hidden lg:flex items-center space-x-10">
           {NAV_LINKS.map((link) => {
             const isInitiatives = link.label === 'Initiatives';
             const isRoute = link.path.startsWith('/');
             const isActive = isRoute 
               ? location.pathname === link.path 
               : (location.pathname === '/' && activeSection === link.path.replace('#', ''));
-            const isHovered = hoveredLink === link.path;
             
             if (isInitiatives) {
               return (
                 <div 
                   key={link.path}
                   className="relative"
-                  onMouseEnter={() => {
-                    setHoveredLink(link.path);
-                    setIsInitiativesOpen(true);
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredLink(null);
-                    setIsInitiativesOpen(false);
-                  }}
+                  onMouseEnter={() => setIsInitiativesOpen(true)}
+                  onMouseLeave={() => setIsInitiativesOpen(false)}
                 >
                   <button
-                    className={`text-[10px] uppercase tracking-[0.25em] font-bold transition-colors py-2 flex items-center gap-1 focus:outline-none ${
+                    className={`text-[10px] uppercase tracking-[0.2em] font-bold transition-colors py-2 flex items-center gap-1 focus:outline-none ${
                       isActive ? 'text-black' : 'text-gray-400 hover:text-gray-900'
                     }`}
                   >
                     {link.label}
-                    <ChevronDown size={12} className={`transition-transform duration-300 ${isInitiativesOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown size={10} className={`transition-transform duration-300 ${isInitiativesOpen ? 'rotate-180' : ''}`} />
                     {isActive && (
                       <motion.div layoutId="navUnderline" className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-accent" />
                     )}
@@ -133,15 +126,15 @@ const Navbar: React.FC = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-64"
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-60"
                       >
                         <div className="bg-white border border-slate-100 shadow-2xl">
-                          <Link to="/initiatives/her-awareness" onClick={() => setIsInitiativesOpen(false)} className="flex flex-col p-6 hover:bg-slate-50 border-b border-slate-50 group">
-                            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#E91E63] mb-1">Empowerment</span>
+                          <Link to="/initiatives/her-awareness" onClick={() => setIsInitiativesOpen(false)} className="flex flex-col p-5 hover:bg-slate-50 border-b border-slate-50 group">
+                            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#E91E63] mb-1">Empowerment</span>
                             <span className="text-sm font-display font-bold text-slate-900 group-hover:text-brand-accent transition-colors">HerAwareness Africa</span>
                           </Link>
-                          <Link to="/initiatives/men-forward" onClick={() => setIsInitiativesOpen(false)} className="flex flex-col p-6 hover:bg-slate-50 group">
-                            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#1976D2] mb-1">Mental Well-being</span>
+                          <Link to="/initiatives/men-forward" onClick={() => setIsInitiativesOpen(false)} className="flex flex-col p-5 hover:bg-slate-50 group">
+                            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#1976D2] mb-1">Mental Well-being</span>
                             <span className="text-sm font-display font-bold text-slate-900 group-hover:text-brand-accent transition-colors">MenForward Africa</span>
                           </Link>
                         </div>
@@ -156,9 +149,7 @@ const Navbar: React.FC = () => {
               <button
                 key={link.path}
                 onClick={() => handleNavClick(link.path)}
-                onMouseEnter={() => setHoveredLink(link.path)}
-                onMouseLeave={() => setHoveredLink(null)}
-                className={`text-[10px] uppercase tracking-[0.25em] font-bold transition-colors relative py-2 focus:outline-none ${
+                className={`text-[10px] uppercase tracking-[0.2em] font-bold transition-colors relative py-2 focus:outline-none ${
                   isActive ? 'text-black' : 'text-gray-400 hover:text-gray-900'
                 }`}
               >
@@ -172,7 +163,7 @@ const Navbar: React.FC = () => {
           
           <button 
             onClick={openInvolvementModal}
-            className="bg-brand-primary text-white px-8 py-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-accent transition-all shadow-sm"
+            className="bg-brand-primary text-white px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-brand-accent transition-all shadow-sm"
           >
             Donate
           </button>
@@ -183,7 +174,7 @@ const Navbar: React.FC = () => {
           className="lg:hidden text-brand-primary focus:outline-none p-2 z-[110]"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={28} className="text-white" /> : <Menu size={28} />}
+          {isOpen ? <X size={24} className="text-white" /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -197,9 +188,9 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 bg-brand-primary z-[105] flex flex-col h-screen w-screen overflow-hidden lg:hidden"
           >
-            <div className="flex flex-col h-full justify-center px-8 md:px-20">
+            <div className="flex flex-col h-full justify-center px-10">
               <div className="flex flex-col space-y-6 overflow-y-auto pt-16 pb-10">
-                {NAV_LINKS.map((link, index) => {
+                {NAV_LINKS.map((link) => {
                   const isInitiatives = link.label === 'Initiatives';
                   const isRoute = link.path.startsWith('/');
                   const isActive = isRoute 
@@ -210,18 +201,18 @@ const Navbar: React.FC = () => {
                     <div key={link.path}>
                       <button
                         onClick={() => isInitiatives ? setIsInitiativesOpen(!isInitiativesOpen) : handleNavClick(link.path)}
-                        className={`text-4xl sm:text-5xl font-display font-bold text-left transition-colors flex items-center gap-4 ${
+                        className={`text-3xl font-display font-bold text-left transition-colors flex items-center gap-4 ${
                           isActive ? 'text-brand-accent' : 'text-white'
                         }`}
                       >
                         {link.label}
-                        {isInitiatives && <ChevronDown size={24} className={`transition-transform ${isInitiativesOpen ? 'rotate-180' : ''}`} />}
+                        {isInitiatives && <ChevronDown size={20} className={`transition-transform ${isInitiativesOpen ? 'rotate-180' : ''}`} />}
                       </button>
                       
                       {isInitiatives && isInitiativesOpen && (
-                        <div className="flex flex-col gap-6 mt-6 ml-6 border-l border-white/10 pl-8">
-                          <Link to="/initiatives/her-awareness" onClick={() => setIsOpen(false)} className="text-xl font-display text-white/60">HerAwareness Africa</Link>
-                          <Link to="/initiatives/men-forward" onClick={() => setIsOpen(false)} className="text-xl font-display text-white/60">MenForward Africa</Link>
+                        <div className="flex flex-col gap-5 mt-6 ml-4 border-l border-white/10 pl-6">
+                          <Link to="/initiatives/her-awareness" onClick={() => setIsOpen(false)} className="text-lg font-display text-white/60">HerAwareness Africa</Link>
+                          <Link to="/initiatives/men-forward" onClick={() => setIsOpen(false)} className="text-lg font-display text-white/60">MenForward Africa</Link>
                         </div>
                       )}
                     </div>
@@ -230,11 +221,11 @@ const Navbar: React.FC = () => {
               </div>
 
               <div className="mt-auto py-10 border-t border-white/10">
-                 <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 mb-6">Connect With Us</p>
-                 <p className="text-xl font-display text-white mb-8">info@awarenessafrica.org</p>
+                 <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 mb-6">Contact Institutional Headquarters</p>
+                 <p className="text-lg font-display text-white mb-8">info@awarenessafrica.org</p>
                  <button 
                    onClick={() => { setIsOpen(false); openInvolvementModal(); }} 
-                   className="bg-brand-accent text-brand-primary w-full px-10 py-5 text-xs font-black uppercase tracking-[0.2em]"
+                   className="bg-brand-accent text-brand-primary w-full px-10 py-4 text-[10px] font-black uppercase tracking-[0.2em]"
                  >
                    Donate Now
                  </button>
