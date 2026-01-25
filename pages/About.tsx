@@ -1,27 +1,20 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Users, Shield, Target } from 'lucide-react';
+import { Shield, Target, Award, Globe, Users, Zap } from 'lucide-react';
 import Button from '../components/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
-};
-
-const boxAnimation = {
-  initial: { opacity: 0, y: 30, scale: 0.98 },
-  whileInView: { opacity: 1, y: 0, scale: 1 },
-  viewport: { once: true },
-  transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+  transition: { duration: 1, ease: [0.22, 1, 0.36, 1] }
 };
 
 const SectionDivider = () => (
   <div className="w-full px-6">
-    <div className="max-w-7xl mx-auto h-1 bg-slate-900" />
+    <div className="max-w-7xl mx-auto h-px bg-slate-100" />
   </div>
 );
 
@@ -29,102 +22,103 @@ const About: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="bg-white relative">
+    <main className="bg-white relative selection:bg-brand-accent selection:text-white">
+      {/* Hero Header */}
       <section className="pt-32 pb-40 px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div {...revealProps}>
-            <span className="text-[14px] uppercase tracking-[0.4em] font-black text-slate-500 mb-12 block">
-              Institutional Identity <span className="text-brand-accent ml-2">/</span>
-            </span>
-            <h1 className="text-5xl md:text-8xl font-display font-bold text-slate-900 mb-16 leading-[0.9]">
-              The Backbone of <br/>Empowerment.
+            <div className="flex items-center gap-4 mb-12">
+              <div className="h-px w-12 bg-brand-accent" />
+              <span className="text-[14px] uppercase tracking-[0.4em] font-black text-slate-400">
+                Institutional Identity
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-[7.5rem] font-display font-bold text-slate-900 mb-16 leading-[0.85] tracking-tighter">
+              A PAN-AFRICAN <br/><span className="text-brand-accent">BACKBONE.</span>
             </h1>
-            <div className="space-y-8">
-              <p className="text-xl md:text-2xl font-display text-slate-800 leading-relaxed font-light">
-                Awareness Africa Foundation is a pan-African umbrella organization established to serve as the strategic backbone for initiatives dedicated to community resilience and youth leadership.
+            <p className="text-2xl md:text-4xl font-display text-slate-800 leading-tight font-light max-w-4xl italic">
+              "We provide the strategic architecture necessary for specialized initiatives to thrive, moving beyond reactive charity to build sustainable systems across the continent."
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Strategic Pillars */}
+      <section className="py-40 px-6 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+            <motion.div {...revealProps} className="space-y-12">
+              <h2 className="text-4xl font-display font-bold text-slate-900">The Awareness <br/>Methodology.</h2>
+              <p className="text-lg text-slate-600 font-light leading-relaxed max-w-lg">
+                Awareness Africa Foundation operates as an umbrella organization, providing resources, data-driven strategies, and institutional weight to targeted interventions in Southern Kaduna and beyond.
               </p>
-              
-              <div className="h-px w-24 bg-brand-accent my-12" />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-                <motion.div 
-                  {...boxAnimation}
-                  whileHover={{ y: -10, borderColor: '#C5A059' }}
-                  className="p-10 border-[6px] border-slate-900 bg-white transition-colors duration-500 shadow-sm hover:shadow-2xl"
-                >
-                  <p className="text-slate-700 font-light leading-relaxed">
-                    We operate with a long-term perspective, moving beyond short-term campaigns to build sustainable systems that foster awareness and early intervention. Our focus is continental, addressing the root causes of social vulnerability through data-driven and community-centered solutions.
-                  </p>
-                </motion.div>
-
-                <motion.div 
-                  {...boxAnimation}
-                  transition={{ ...boxAnimation.transition, delay: 0.2 }}
-                  whileHover={{ y: -10, borderColor: '#C5A059' }}
-                  className="p-10 border-[6px] border-slate-900 bg-white transition-colors duration-500 shadow-sm hover:shadow-2xl"
-                >
-                  <p className="text-slate-700 font-light leading-relaxed">
-                    By championing gender equity, vocational excellence, and mental well-being, the Foundation provides the structural support necessary for specialized initiatives to thrive. We believe in building a future where African youth are not merely beneficiaries, but the primary architects of their society.
-                  </p>
-                </motion.div>
+              <div className="space-y-8">
+                {[
+                  { icon: <Target className="text-[#C5A059]" />, title: "Precision Intervention", desc: "Data-led mapping of community needs to ensure resources hit the most vulnerable sectors." },
+                  { icon: <Shield className="text-[#E91E63]" />, title: "Protection Frameworks", desc: "Building safety nets for the girl child through education and reproductive health literacy." },
+                  { icon: <Zap className="text-[#1976D2]" />, title: "Rapid Resilience", desc: "Equipping young men with mental tools to combat suicide and emotional isolation." }
+                ].map((pillar, i) => (
+                  <div key={i} className="flex gap-6 items-start">
+                    <div className="w-12 h-12 bg-white shadow-sm flex items-center justify-center shrink-0 border border-slate-100">{pillar.icon}</div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900 uppercase tracking-widest mb-2">{pillar.title}</h4>
+                      <p className="text-xs text-slate-500 leading-relaxed font-light">{pillar.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+            <motion.div {...revealProps} transition={{ delay: 0.2 }} className="relative aspect-[4/5] bg-slate-200 overflow-hidden shadow-2xl">
+               <img 
+                 src="https://images.unsplash.com/photo-1526662095394-13650df369ca?q=80&w=2000" 
+                 alt="Community Strategy" 
+                 className="w-full h-full object-cover grayscale brightness-90 transition-transform duration-1000 hover:scale-105"
+               />
+               <div className="absolute inset-0 bg-brand-primary/10" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
       <SectionDivider />
 
-      <section className="py-40 px-6 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <motion.div {...revealProps} className="max-w-5xl">
-            <div className="flex items-center gap-6 mb-12">
-              <Target size={32} className="text-brand-accent" aria-hidden="true" />
-              <h2 className="text-[14px] uppercase tracking-[0.4em] font-black text-slate-500">Our Vision</h2>
-            </div>
-            <p className="text-[48px] font-display font-bold text-slate-900 leading-tight">
-              A future where African youth are confident, engaged, emotionally resilient, and empowered to lead inclusive social change.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section className="py-40 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div {...revealProps} className="max-w-5xl">
-            <div className="flex items-center gap-6 mb-12">
-              <Shield size={32} className="text-brand-accent" aria-hidden="true" />
-              <h2 className="text-[14px] uppercase tracking-[0.4em] font-black text-slate-500">Our Mission</h2>
-            </div>
-            <p className="text-[40px] font-display font-bold text-slate-900 leading-tight">
-              To catalyze youth empowerment across Africa by building awareness, championing gender equity, and fostering emotional well-being through community-driven programs and partnerships.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
+      {/* Vision & Mission */}
       <section className="py-40 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div {...revealProps} className="mb-24">
-            <h2 className="text-[48px] font-display font-bold text-slate-900 leading-tight">Leadership & Advice</h2>
-            <span className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 mt-6 block">Governance</span>
-          </motion.div>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-100 border border-slate-100">
+           <motion.div {...revealProps} className="p-16 md:p-24 bg-white space-y-10">
+              <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-slate-400">Our Vision</span>
+              <p className="text-3xl font-display font-bold text-slate-900 leading-tight">
+                An Africa where every young person is emotionally resilient, economically empowered, and a primary architect of their community.
+              </p>
+           </motion.div>
+           <motion.div {...revealProps} transition={{ delay: 0.2 }} className="p-16 md:p-24 bg-white space-y-10">
+              <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-slate-400">Our Mission</span>
+              <p className="text-3xl font-display font-bold text-slate-900 leading-tight">
+                To catalyze social change by fostering gender equity, youth leadership, and mental well-being through institutional partnerships and grassroots intervention.
+              </p>
+           </motion.div>
         </div>
       </section>
 
       <SectionDivider />
 
-      <section className="py-40 px-6 bg-white">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div {...revealProps} className="mb-24">
-            <h2 className="text-[48px] font-display font-bold text-slate-900 mb-8 leading-tight">Institutional Partners</h2>
-            <span className="text-[14px] uppercase tracking-[0.5em] font-bold text-slate-400 mb-6 block">Our Network</span>
+      {/* Governance CTA */}
+      <section className="py-40 px-6 bg-slate-900 text-white relative overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.div {...revealProps}>
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-10">Institutional <br/>Integrity.</h2>
+            <p className="text-white/40 text-lg font-light mb-16 max-w-2xl mx-auto">
+              Our governance model ensures total transparency and accountability to our donors and the communities we serve.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button variant="secondary" onClick={() => navigate('/contact')}>Institutional Inquiry</Button>
+              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10" onClick={() => navigate('/resources')}>Annual Reports</Button>
+            </div>
           </motion.div>
         </div>
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-brand-accent/5 rounded-full blur-3xl" />
       </section>
     </main>
   );
