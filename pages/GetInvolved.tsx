@@ -3,7 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Users, Briefcase, ShieldCheck, ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
-import { openInvolvementModal } from '../App';
+// Fix: openInvolvementModal is exported from ../utils/events, not ../App
+import { openInvolvementModal } from '../utils/events';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },

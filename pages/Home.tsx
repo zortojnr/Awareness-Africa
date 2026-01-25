@@ -7,7 +7,7 @@ import ImpactPillars from '../components/ImpactPillars';
 import CoreValues from '../components/CoreValues';
 import Button from '../components/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { openInvolvementModal } from '../App';
+import { openInvolvementModal } from '../utils/events';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },

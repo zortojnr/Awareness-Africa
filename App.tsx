@@ -15,11 +15,6 @@ import CustomCursor from './components/CustomCursor';
 import FloatingSlogan from './components/FloatingSlogan';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// Global trigger helper
-export const openInvolvementModal = () => {
-  window.dispatchEvent(new CustomEvent('open-involvement-modal'));
-};
-
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {

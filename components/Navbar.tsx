@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { NAV_LINKS, COLORS } from '../constants';
-import { openInvolvementModal } from '../App';
+import { openInvolvementModal } from '../utils/events';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -254,7 +254,7 @@ const Navbar: React.FC = () => {
                           isActive ? 'text-brand-accent' : 'text-white hover:text-brand-accent'
                         }`}
                       >
-                        <span className="relative z-10">{link.label}</span>
+                        <span className="relative_z-10">{link.label}</span>
                         {isInitiatives && <ChevronDown size={32} className={`transition-transform duration-500 ${isInitiativesOpen ? 'rotate-180' : ''}`} />}
                       </motion.button>
                       

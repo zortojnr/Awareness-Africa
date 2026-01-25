@@ -30,7 +30,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         html {
-            /* Refined smooth scroll feel */
             scroll-behavior: smooth;
         }
         body {
@@ -42,7 +41,6 @@
         h1, h2, h3, .font-display {
             font-family: 'Playfair+Display', serif;
         }
-        /* Custom scrollbar for institutional feel */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -55,11 +53,9 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #333;
         }
-        /* Sharp edges as requested */
         * {
             border-radius: 0 !important;
         }
-        /* Weighted scroll behavior via smooth transitions on containers where applicable */
         .weighted-scroll {
             transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
@@ -68,16 +64,19 @@
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
     "react/": "https://esm.sh/react@^19.2.3/",
     "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
     "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "framer-motion": "https://esm.sh/framer-motion@^12.28.1"
+    "framer-motion": "https://esm.sh/framer-motion@^12.28.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
   }
 }
 </script>
 </head>
 <body class="selection:bg-brand-accent selection:text-white">
     <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
