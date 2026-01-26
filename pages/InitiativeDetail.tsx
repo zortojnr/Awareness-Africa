@@ -17,7 +17,6 @@ import {
   Target,
   FileCheck,
   TrendingUp,
-  MessageSquare,
   MessageCircle
 } from 'lucide-react';
 import Button from '../components/Button';
@@ -333,15 +332,15 @@ const MenForwardPage: React.FC = () => {
 
       <SectionDivider color="bg-[#1976D2]" weight="h-[3px]" />
 
-      <section className="py-24 sm:py-32 px-6 flex flex-col items-center text-center">
-         <div className="max-w-2xl mb-12">
+      <section className="py-24 sm:py-32 px-6">
+         <div className="max-w-2xl mx-auto flex flex-col items-center text-center">
             <h3 className="text-2xl sm:text-4xl font-display font-bold text-slate-900 mb-6">Join the group of men making change.</h3>
-            <p className="text-base text-slate-600 font-light max-w-xl mx-auto">Connect instantly for safe, peer-led dialogue. A confidential space for resilience and honest support.</p>
-         </div>
-         <div className="w-full flex justify-center">
-            <Button variant="whatsapp" className="w-full sm:w-auto px-12" onClick={handleWhatsAppJoin}>
-               WhatsApp Connection <MessageCircle className="ml-2" size={16} />
-            </Button>
+            <p className="text-base text-slate-600 font-light mb-10 max-w-xl">Connect instantly for safe, peer-led dialogue. A confidential space for resilience and honest support.</p>
+            <div className="w-full flex justify-center">
+               <Button variant="whatsapp" className="w-full sm:w-auto px-12" onClick={handleWhatsAppJoin}>
+                  WhatsApp Connection <MessageCircle className="ml-2" size={16} />
+               </Button>
+            </div>
          </div>
       </section>
 

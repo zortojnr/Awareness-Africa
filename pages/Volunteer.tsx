@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Users, Globe, ShieldCheck, ArrowRight, Award, Zap, BookOpen } from 'lucide-react';
+import { Heart, Users, Globe, ShieldCheck, ArrowRight, Award } from 'lucide-react';
 import Button from '../components/Button';
 
 const revealProps = {
@@ -13,7 +13,7 @@ const revealProps = {
 
 const SectionDivider = () => (
   <div className="w-full px-6">
-    <div className="max-w-7xl mx-auto h-px bg-slate-900/10" />
+    <div className="max-w-7xl mx-auto h-px bg-slate-100" />
   </div>
 );
 
@@ -75,13 +75,16 @@ const Volunteer: React.FC = () => {
 
       <SectionDivider />
 
-      {/* CTA Section */}
-      <section className="py-24 sm:py-40 px-6 bg-slate-900 text-white flex flex-col items-center text-center">
-        <div className="max-w-3xl mx-auto">
-          <motion.div {...revealProps}>
-             <Award className="text-brand-accent mx-auto mb-10" size={32} />
-             <h2 className="text-3xl md:text-5xl font-display font-bold mb-12 leading-tight">Be part of the <br/>Transformation.</h2>
-             <div className="flex justify-center w-full">
+      {/* CTA Section - Repositioned button centrally directly under content */}
+      <section className="py-24 sm:py-40 px-6 bg-slate-900 text-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div {...revealProps} className="flex flex-col items-center">
+             <Award className="text-brand-accent mb-10" size={32} />
+             <h2 className="text-3xl md:text-5xl font-display font-bold mb-10 leading-tight">Be part of the <br/>Transformation.</h2>
+             <p className="text-sm md:text-base text-white/60 mb-12 font-light max-w-xl">
+               Our missions depend on the dedication of people like you. Join our global network of change-makers today.
+             </p>
+             <div className="w-full flex justify-center">
                <Button 
                   variant="pink" 
                   className="w-full sm:w-auto px-16 py-4"
@@ -95,6 +98,19 @@ const Volunteer: React.FC = () => {
              </p>
           </motion.div>
         </div>
+      </section>
+
+      <SectionDivider />
+      
+      <section className="py-20 px-6 text-center">
+        <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 mb-8">Institutional Stewardship</p>
+        <Button 
+          variant="outline" 
+          className="w-full sm:w-auto px-12 border-slate-200 text-slate-400 hover:text-slate-900 hover:border-slate-900"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          Back to Top
+        </Button>
       </section>
     </main>
   );
