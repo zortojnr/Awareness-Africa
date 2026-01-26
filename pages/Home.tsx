@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Globe, Users, Heart, Shield, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Globe, Users, Shield, Zap } from 'lucide-react';
 import HeroCarousel from '../components/HeroCarousel';
 import ImpactPillars from '../components/ImpactPillars';
 import CoreValues from '../components/CoreValues';
@@ -16,6 +16,10 @@ const revealProps = {
   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
 };
 
+const SectionDivider = () => (
+  <div className="w-full h-1 bg-brand-primary" />
+);
+
 const Home: React.FC = () => {
   const [activeImpactColor, setActiveImpactColor] = useState<string>('#FAF9F6');
   const [hoveredBranch, setHoveredBranch] = useState<'her' | 'men' | null>(null);
@@ -27,7 +31,7 @@ const Home: React.FC = () => {
     <main id="home" className="bg-[#FAF9F6] overflow-x-hidden">
       <HeroCarousel />
 
-      <section id="about" className="py-20 sm:py-32 px-6 relative overflow-hidden border-b-[8px] border-brand-primary">
+      <section id="about" className="py-20 sm:py-32 px-6 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1526662095394-13650df369ca?q=80&w=2000&auto=format&fit=crop" 
@@ -69,19 +73,22 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider />
       <CoreValues />
+      <SectionDivider />
 
-      <section id="initiatives" className="py-20 sm:py-32 relative px-6 overflow-hidden border-b-[8px] border-brand-primary">
-        <div className="absolute inset-0 z-0 flex">
+      <section id="initiatives" className="py-20 sm:py-32 relative px-6 overflow-hidden">
+        {/* Background color orientation fix: vertical on desktop, horizontal on mobile */}
+        <div className="absolute inset-0 z-0 flex flex-col md:flex-row">
           <motion.div 
             animate={{ opacity: hoveredBranch === 'her' ? 0.6 : 1 }}
             transition={{ duration: 0.3 }}
-            className="h-full w-1/2 bg-[#E91E63]"
+            className="h-1/2 w-full md:h-full md:w-1/2 bg-[#E91E63]"
           />
           <motion.div 
             animate={{ opacity: hoveredBranch === 'men' ? 0.6 : 1 }}
             transition={{ duration: 0.3 }}
-            className="h-full w-1/2 bg-[#1976D2]"
+            className="h-1/2 w-full md:h-full md:w-1/2 bg-[#1976D2]"
           />
         </div>
 
@@ -142,11 +149,13 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider />
+
       <motion.section 
         id="impact" 
         animate={{ backgroundColor: activeImpactColor }}
         transition={{ duration: 1 }}
-        className="py-20 sm:py-32 px-6 overflow-hidden relative border-b-[8px] border-brand-primary"
+        className="py-20 sm:py-32 px-6 overflow-hidden relative"
       >
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div {...revealProps} className="text-center mb-12 md:mb-20">
@@ -167,7 +176,9 @@ const Home: React.FC = () => {
         </div>
       </motion.section>
 
-      <section id="programs" className="py-20 sm:py-32 bg-[#0A0F1A] text-white px-6 relative overflow-hidden border-b-[8px] border-brand-primary">
+      <SectionDivider />
+
+      <section id="programs" className="py-20 sm:py-32 bg-[#0A0F1A] text-white px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
             <motion.div {...revealProps} className="max-w-xl">
@@ -186,8 +197,8 @@ const Home: React.FC = () => {
                 { icon: <Users size={24} />, title: "Partnerships", desc: "Collaborating with global institutions." }
               ].map((item, idx) => (
                 <motion.div key={idx} {...revealProps} transition={{ ...revealProps.transition, delay: 0.1 * idx }} className="group">
-                  <div className="w-10 h-10 bg-white/5 flex items-center justify-center mb-6 group-hover:bg-brand-accent transition-colors">
-                    <span className="text-brand-accent group-hover:text-white transition-colors">{item.icon}</span>
+                  <div className="w-10 h-10 bg-white/5 flex items-center justify-center mb-6">
+                    <span className="text-brand-accent transition-colors">{item.icon}</span>
                   </div>
                   <h4 className="font-display text-xl font-bold mb-2">{item.title}</h4>
                   <p className="text-xs text-white/50 font-light leading-relaxed">{item.desc}</p>
@@ -198,7 +209,9 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section id="get-involved" className="py-20 sm:py-32 px-6 relative overflow-hidden border-b-[8px] border-brand-primary">
+      <SectionDivider />
+
+      <section id="get-involved" className="py-20 sm:py-32 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div 
             {...revealProps}

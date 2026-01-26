@@ -10,7 +10,6 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [isInitiativesOpen, setIsInitiativesOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -83,10 +82,10 @@ const Navbar: React.FC = () => {
           onClick={() => handleNavClick('#home')} 
           className="flex flex-col items-start group focus:outline-none shrink-0"
         >
-          <span className="font-display text-lg sm:text-2xl font-bold tracking-normal uppercase leading-none text-brand-primary transition-colors group-hover:text-brand-accent">
+          <span className="font-display text-lg sm:text-2xl font-bold tracking-[0.05em] uppercase leading-none text-brand-primary transition-colors group-hover:text-brand-accent">
             Awareness Africa
           </span>
-          <span className="text-[8px] tracking-[0.3em] font-medium uppercase opacity-60 text-brand-primary">
+          <span className="text-[8px] tracking-[0.4em] font-medium uppercase opacity-60 text-brand-primary mt-1">
             Foundation
           </span>
         </button>

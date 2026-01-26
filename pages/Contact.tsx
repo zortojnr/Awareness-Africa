@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Globe, Linkedin, Twitter, Facebook, ArrowRight, Navigation } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import Button from '../components/Button';
 
 const revealProps = {
@@ -11,30 +11,11 @@ const revealProps = {
   transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
 };
 
+const SectionDivider = () => (
+  <div className="w-full h-1 bg-brand-primary" />
+);
+
 const Contact: React.FC = () => {
-  const [geoLoading, setGeoLoading] = useState(false);
-
-  const handleLiveNavigation = () => {
-    setGeoLoading(true);
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          const url = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=Zonkwa,Kaduna,Nigeria`;
-          window.open(url, '_blank');
-          setGeoLoading(false);
-        },
-        () => {
-          window.open('https://www.google.com/maps/search/?api=1&query=Zonkwa,Kaduna,Nigeria', '_blank');
-          setGeoLoading(false);
-        }
-      );
-    } else {
-      window.open('https://www.google.com/maps/search/?api=1&query=Zonkwa,Kaduna,Nigeria', '_blank');
-      setGeoLoading(false);
-    }
-  };
-
   return (
     <main className="bg-white selection:bg-brand-accent selection:text-white overflow-x-hidden">
       <section className="relative min-h-[50vh] flex flex-col items-center justify-center bg-slate-900 py-32 px-6">
@@ -58,6 +39,8 @@ const Contact: React.FC = () => {
           </p>
         </motion.div>
       </section>
+
+      <SectionDivider />
 
       <section className="py-24 sm:py-40 px-6">
         <div className="max-w-7xl mx-auto">
@@ -86,6 +69,22 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="space-y-8">
+                <h3 className="text-xs uppercase tracking-[0.4em] font-bold text-slate-900 mb-4">Location Map</h3>
+                <div className="w-full aspect-video bg-slate-100 border border-slate-200 overflow-hidden">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15724.893818617578!2d8.2833333!3d9.7666667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10f01968848d795b%3A0x70c01e6704be9f80!2sZonkwa!5e0!3m2!1sen!2sng!4v1714500000000!5m2!1sen!2sng" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen={true} 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Awareness Africa Foundation Headquarters Location"
+                  ></iframe>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div 
@@ -106,7 +105,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Message</label>
-                  <textarea rows={4} className="w-full bg-slate-50 border-2 border-slate-100 px-4 py-3 text-sm focus:border-brand-accent outline-none resize-none" />
+                  <textarea rows={6} className="w-full bg-slate-50 border-2 border-slate-100 px-4 py-3 text-sm focus:border-brand-accent outline-none resize-none" />
                 </div>
                 <Button variant="primary" className="w-full py-4">Send Message</Button>
               </form>
@@ -115,17 +114,7 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-slate-900 text-white text-center">
-        <h4 className="text-2xl font-display font-bold mb-6">Find us in Southern Kaduna</h4>
-        <Button 
-          variant="outline" 
-          className="border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white px-12"
-          onClick={handleLiveNavigation}
-          disabled={geoLoading}
-        >
-          {geoLoading ? 'Locating...' : 'Get Directions'} <Navigation size={14} className="ml-2" />
-        </Button>
-      </section>
+      <SectionDivider />
     </main>
   );
 };
