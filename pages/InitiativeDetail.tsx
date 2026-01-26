@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { 
@@ -22,6 +21,14 @@ import {
 } from 'lucide-react';
 import Button from '../components/Button';
 import { motion } from 'framer-motion';
+
+// Import images for HerAwareness
+import img1 from '../assets/images/1a.jpeg';
+import img2 from '../assets/images/2.jpeg';
+import img9 from '../assets/images/9.jpeg';
+import img4 from '../assets/images/4.jpeg';
+import img5 from '../assets/images/5.jpeg';
+import img6 from '../assets/images/6.jpeg';
 
 const revealProps = {
   initial: { opacity: 0, y: 15 },
@@ -63,40 +70,56 @@ const HerAwarenessPage: React.FC = () => {
               HER AWARENESS <br/>AFRICA
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-display italic leading-tight mb-12 max-w-2xl">
-              Empowering Young Women in Southern Kaduna
+              Empowering Young Women Across Northern Nigeria
             </p>
           </motion.div>
         </div>
       </header>
 
       <section className="py-20 sm:py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.div {...revealProps}>
-            <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#E91E63] mb-8 block">Background & Rationale</h2>
-            <div className="space-y-6 text-base sm:text-lg text-slate-800 leading-relaxed font-light">
-              <p>Young women in Southern Kaduna, Nigeria, face significant challenges in education, career development, and sexual health. Many drop out of school due to early pregnancies, lack of financial support, or lack of self-belief. Most girls lack guidance to make informed decisions.</p>
-              <p>At the same time, early sexual activity without knowledge of reproductive health has led to high rates of teenage pregnancy and sexually transmitted infections (including HIV). While HIV treatment is free, prevention and sexual health education remain under-emphasized.</p>
-              <p className="font-medium text-[#E91E63]">This NGO seeks to break this cycle by providing mentorship, education, and empowerment to young ladies, equipping them with career direction and essential knowledge about sexual health.</p>
-            </div>
-          </motion.div>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+             <motion.div {...revealProps} className="max-w-4xl">
+              <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#E91E63] mb-8 block">Background & Rationale</h2>
+              <div className="space-y-6 text-base sm:text-lg text-slate-800 leading-relaxed font-light">
+                <p>Young women across Northern Nigeria face significant challenges in education, career development, and sexual health. Many drop out of school due to early pregnancies, lack of financial support, or lack of self-belief. Most girls lack guidance to make informed decisions.</p>
+                <p>At the same time, early sexual activity without knowledge of reproductive health has led to high rates of teenage pregnancy and sexually transmitted infections (including HIV). While HIV treatment is free, prevention and sexual health education remain under-emphasized.</p>
+                <p className="font-medium text-[#E91E63]">This NGO seeks to break this cycle by providing mentorship, education, and empowerment to young ladies. We achieve this through structured vocational workshops, digital literacy programs, and community-led health advocacy, equipping them with career direction and essential knowledge about sexual health.</p>
+              </div>
+            </motion.div>
+            <motion.div {...revealProps} transition={{ delay: 0.2 }} className="relative aspect-[4/5] bg-slate-100 hidden lg:block overflow-hidden shadow-lg">
+               <img src={img1} alt="Community Education" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
       <SectionDivider />
 
       <section className="py-20 sm:py-32 px-6 bg-slate-50/50">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-          <div className="space-y-4 border-l-[3px] border-[#E91E63] pl-6">
-            <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 block">Mission Statement</h2>
-            <p className="text-xl sm:text-2xl font-display font-bold text-slate-900 leading-tight">
-              To empower young women in Southern Kaduna with the knowledge, guidance, and self-belief to make informed career choices and take control of their sexual and reproductive health.
-            </p>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-16">
+            <div className="space-y-4 border-l-[3px] border-[#E91E63] pl-6">
+              <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 block">Mission Statement</h2>
+              <p className="text-xl sm:text-2xl font-display font-bold text-slate-900 leading-tight">
+                To empower young women across Northern Nigeria with the knowledge, guidance, and self-belief to make informed career choices and take control of their sexual and reproductive health.
+              </p>
+            </div>
+            <div className="space-y-4 border-l-[3px] border-slate-900 pl-6">
+              <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 block">Vision Statement</h2>
+              <p className="text-xl sm:text-2xl font-display font-bold text-slate-900 leading-tight">
+                A future where every young woman in Northern Nigeria is confident, educated, and empowered to build a meaningful career and contribute positively to society.
+              </p>
+            </div>
           </div>
-          <div className="space-y-4 border-l-[3px] border-slate-900 pl-6">
-            <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 block">Vision Statement</h2>
-            <p className="text-xl sm:text-2xl font-display font-bold text-slate-900 leading-tight">
-              A future where every young woman in Southern Kaduna is confident, educated, and empowered to build a meaningful career and contribute positively to society.
-            </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+             <div className="aspect-video bg-slate-200 overflow-hidden shadow-sm">
+                <img src={img2} alt="Empowered Youth" className="w-full h-full object-cover" />
+             </div>
+             <div className="aspect-video bg-slate-200 overflow-hidden shadow-sm">
+                <img src={img9} alt="Workshop Session" className="w-full h-full object-cover" />
+             </div>
           </div>
         </div>
       </section>
@@ -104,23 +127,29 @@ const HerAwarenessPage: React.FC = () => {
       <SectionDivider />
 
       <section className="py-20 sm:py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#E91E63] mb-12 block">Purpose & Objectives</h2>
-          <div className="grid grid-cols-1 gap-8">
-            {[
-              "To guide young girls in choosing career paths aligned with their strengths and aspirations.",
-              "To reduce school drop-out rates by inspiring girls to see the value of education.",
-              "To promote sexual health education, reducing early pregnancies and STIs/HIV cases.",
-              "To instill confidence, self-belief, and a sense of purpose in young women.",
-              "To build a network of mentors, facilitators, and peers who can continue to support them beyond the program."
-            ].map((obj, i) => (
-              <div key={i} className="flex gap-6 items-start">
-                <div className="w-8 h-8 rounded-full bg-[#E91E63]/10 flex items-center justify-center shrink-0">
-                  <span className="text-[10px] font-bold text-[#E91E63]">{i + 1}</span>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+           <div className="aspect-[4/3] bg-slate-100 overflow-hidden shadow-lg hidden lg:block order-2 lg:order-1">
+              <img src={img4} alt="Mentorship" className="w-full h-full object-cover" />
+           </div>
+           
+           <div className="max-w-4xl order-1 lg:order-2">
+            <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#E91E63] mb-12 block">Purpose & Objectives</h2>
+            <div className="grid grid-cols-1 gap-8">
+              {[
+                "To guide young girls in choosing career paths aligned with their strengths and aspirations.",
+                "To reduce school drop-out rates by inspiring girls to see the value of education.",
+                "To promote sexual health education, reducing early pregnancies and STIs/HIV cases.",
+                "To instill confidence, self-belief, and a sense of purpose in young women.",
+                "To build a network of mentors, facilitators, and peers who can continue to support them beyond the program."
+              ].map((obj, i) => (
+                <div key={i} className="flex gap-6 items-start">
+                  <div className="w-8 h-8 rounded-full bg-[#E91E63]/10 flex items-center justify-center shrink-0">
+                    <span className="text-[10px] font-bold text-[#E91E63]">{i + 1}</span>
+                  </div>
+                  <p className="text-base sm:text-lg text-slate-700 font-light leading-relaxed">{obj}</p>
                 </div>
-                <p className="text-base sm:text-lg text-slate-700 font-light leading-relaxed">{obj}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -156,6 +185,9 @@ const HerAwarenessPage: React.FC = () => {
                    <p className="text-xs italic text-white/40">Career assessment quiz & Write your future self letter.</p>
                 </li>
               </ul>
+              <div className="aspect-video bg-slate-800 mt-6 overflow-hidden border border-white/10">
+                 <img src={img5} alt="Career Workshop" className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" />
+              </div>
             </div>
 
             {/* Day 2 */}
@@ -179,6 +211,9 @@ const HerAwarenessPage: React.FC = () => {
                    <p className="text-xs italic text-white/40">Group pledge + distribution of sanitary pads.</p>
                 </li>
               </ul>
+              <div className="aspect-video bg-slate-800 mt-6 overflow-hidden border border-white/10">
+                 <img src={img6} alt="Health Session" className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" />
+              </div>
             </div>
           </div>
         </div>

@@ -1,14 +1,17 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+
+// Import images
+import img20 from '../assets/images/20.jpeg';
+import img15 from '../assets/images/15.jpeg';
 
 const SLIDES = [
   {
     id: 1,
     title: "Awareness Africa Foundation",
     subtitle: "Empowering minds, amplifying voices, and inspiring change across Africa.",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2000&auto=format&fit=crop",
+    image: img20,
     accent: "#C5A059",
     cta: "Discover Our Mission"
   },
@@ -16,7 +19,7 @@ const SLIDES = [
     id: 2,
     title: "HerAwareness Africa",
     subtitle: "Empowering the African girl child through education, protection, and advocacy.",
-    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2000&auto=format&fit=crop",
+    image: img15,
     accent: "#E91E63",
     cta: "Support Girls' Education"
   },
@@ -24,7 +27,7 @@ const SLIDES = [
     id: 3,
     title: "MenForward Africa",
     subtitle: "Redefining masculinity. Normalizing mental health support for African men.",
-    image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=2000&auto=format&fit=crop",
+    image: null,
     accent: "#1976D2",
     cta: "Join the Conversation"
   }
@@ -97,11 +100,18 @@ const HeroCarousel: React.FC = () => {
           onDragEnd={handleDragEnd}
         >
           <div className="absolute inset-0 bg-black/60 z-10 pointer-events-none" />
-          <img 
-            src={SLIDES[current].image} 
-            alt={SLIDES[current].title}
-            className="w-full h-full object-cover grayscale opacity-60 pointer-events-none select-none"
-          />
+          {SLIDES[current].image ? (
+            <img 
+              src={SLIDES[current].image} 
+              alt={SLIDES[current].title}
+              className="w-full h-full object-cover grayscale opacity-60 pointer-events-none select-none"
+            />
+          ) : (
+            <div 
+              className="w-full h-full opacity-60 pointer-events-none select-none"
+              style={{ backgroundColor: SLIDES[current].accent }}
+            />
+          )}
         </motion.div>
       </AnimatePresence>
 
@@ -121,7 +131,7 @@ const HeroCarousel: React.FC = () => {
             >
               {current === 0 ? "Parent Organization" : "Initiative Spotlight"}
             </motion.span>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold mb-6 leading-[1.1] tracking-tighter">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-bold mb-6 leading-[1.1] tracking-tighter">
               {renderTitle(current)}
             </h1>
             <p className="text-base sm:text-lg text-white/70 font-light mb-10 max-w-md leading-relaxed">

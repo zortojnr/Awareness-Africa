@@ -1,9 +1,23 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Users, Globe, Heart, Zap, Shield } from 'lucide-react';
 import Button from '../components/Button';
 import { openInvolvementModal } from '../utils/events';
+
+// Workshop Image Imports
+import img7 from '../assets/images/7.jpeg';
+import img8 from '../assets/images/8.jpeg';
+import img9 from '../assets/images/9.jpeg';
+import img10 from '../assets/images/10.jpeg';
+import img11 from '../assets/images/11.jpeg';
+import img12 from '../assets/images/12.jpeg';
+import img13 from '../assets/images/13.jpeg';
+import img14 from '../assets/images/14.jpeg';
+import img15 from '../assets/images/15.jpeg';
+import img16 from '../assets/images/16.jpeg';
+import img17 from '../assets/images/17.jpeg';
+import img18 from '../assets/images/18.jpeg';
+import img19 from '../assets/images/19.jpeg';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },
@@ -17,6 +31,11 @@ const SectionDivider = () => (
 );
 
 const Programs: React.FC = () => {
+  const workshopImages = [
+    img7, img8, img9, img10, img11, img12, 
+    img13, img14, img15, img16, img17, img18, img19
+  ];
+
   return (
     <main className="bg-white selection:bg-brand-accent selection:text-white overflow-x-hidden">
       <section className="pt-24 pb-32 sm:pt-40 sm:pb-48 px-6">
@@ -65,6 +84,45 @@ const Programs: React.FC = () => {
                     Scalable initiatives addressing root causes of social exclusion through structured, results-oriented delivery.
                   </p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* New Section: Previous Help Workshops */}
+      <section className="py-24 sm:py-32 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...revealProps} className="mb-16">
+            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 block mb-4">
+              Our Legacy
+            </span>
+            <h3 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-4">
+              Our Previous Held Workshops
+            </h3>
+            <p className="text-base text-slate-600 font-light max-w-2xl">
+              A visual journey through our impactful community engagements and educational sessions.
+            </p>
+          </motion.div>
+
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+            {workshopImages.map((img, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.05 }}
+                className="break-inside-avoid relative group overflow-hidden bg-slate-100"
+              >
+                <img 
+                  src={img} 
+                  alt={`Workshop moment ${i + 1}`} 
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
               </motion.div>
             ))}
           </div>

@@ -1,9 +1,16 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Target, Award, Globe, Users, Zap } from 'lucide-react';
+import { Shield, Target, Award, Globe, Users, Zap, User } from 'lucide-react';
 import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
+
+// Image Imports
+import methodologyImg from '../assets/images/1a.jpeg';
+import johnBabaImg from '../assets/images/Johnbaba.jpeg';
+import victorImg from '../assets/images/Victor.jpeg';
+import rhodaImg from '../assets/images/Rhoda.jpeg';
+import motunrayoImg from '../assets/images/Motunrayo.jpeg';
+import tayeImg from '../assets/images/Taye.png';
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },
@@ -18,6 +25,45 @@ const SectionDivider = () => (
 
 const About: React.FC = () => {
   const navigate = useNavigate();
+
+  const team = [
+    {
+      name: "Victoria Odesanya",
+      role: "Founder",
+      image: null, // Placeholder
+      bio: "Visionary leader dedicated to transforming the African narrative through sustainable development."
+    },
+    {
+      name: "Godwin JohnBaba",
+      role: "Project Coordinator",
+      image: johnBabaImg,
+      bio: "Orchestrating complex initiatives with precision and community-focused execution."
+    },
+    {
+      name: "Victor Chukwudalu Okafor",
+      role: "Program Coordinator",
+      image: victorImg,
+      bio: "Driving program impact through strategic planning and stakeholder engagement."
+    },
+    {
+      name: "Awyetu Rhoda Fadason",
+      role: "Media & Communication Officer I",
+      image: rhodaImg,
+      bio: "Amplifying our voice and mission through compelling storytelling and digital outreach."
+    },
+    {
+      name: "Motunrayo Eleanor Ajagbonna",
+      role: "Media & Communication Officer II",
+      image: motunrayoImg,
+      bio: "Building bridges between our work and the world through innovative communication strategies."
+    },
+    {
+      name: "Taye Ikuponiyi",
+      role: "Welfare Officer",
+      image: tayeImg,
+      bio: "Ensuring the well-being of our team and beneficiaries remains at the heart of our operations."
+    }
+  ];
 
   return (
     <main className="bg-white relative selection:bg-brand-accent selection:text-white overflow-x-hidden">
@@ -68,9 +114,9 @@ const About: React.FC = () => {
             </motion.div>
             <motion.div {...revealProps} transition={{ delay: 0.2 }} className="relative aspect-video lg:aspect-[4/5] bg-slate-200 overflow-hidden shadow-2xl">
                <img 
-                 src="https://images.unsplash.com/photo-1526662095394-13650df369ca?q=80&w=2000" 
+                 src={methodologyImg}
                  alt="Community Strategy" 
-                 className="w-full h-full object-cover grayscale brightness-90 transition-transform duration-1000 hover:scale-105"
+                 className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
                />
             </motion.div>
           </div>
@@ -79,20 +125,103 @@ const About: React.FC = () => {
 
       <SectionDivider />
 
-      <section className="py-24 sm:py-32 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-100 border border-slate-100">
-           <motion.div {...revealProps} className="p-10 md:p-16 bg-white space-y-6">
-              <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-slate-400">Our Vision</span>
-              <p className="text-xl sm:text-3xl font-display font-bold text-slate-900 leading-tight">
-                An Africa where every young person is emotionally resilient and economically empowered to build a meaningful future.
-              </p>
-           </motion.div>
-           <motion.div {...revealProps} transition={{ delay: 0.2 }} className="p-10 md:p-16 bg-white space-y-6">
-              <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-slate-400">Our Mission</span>
-              <p className="text-xl sm:text-3xl font-display font-bold text-slate-900 leading-tight">
-                To catalyze social change through institutional partnerships, research-backed strategy, and direct grassroots intervention.
-              </p>
-           </motion.div>
+      {/* Enhanced Vision & Mission Section */}
+      <section className="py-24 sm:py-32 px-6 bg-slate-900 text-white relative overflow-hidden">
+        {/* Abstract background elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+           <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-brand-accent blur-[100px]" />
+           <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-500 blur-[100px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div {...revealProps} className="text-center mb-20">
+             <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Our Guiding North Star</h2>
+             <div className="h-1 w-24 bg-brand-accent mx-auto" />
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+             <motion.div 
+               {...revealProps} 
+               className="p-8 md:p-12 bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors duration-500 rounded-lg"
+             >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-brand-accent/20 rounded-full text-brand-accent">
+                    <Globe size={32} />
+                  </div>
+                  <span className="text-sm uppercase tracking-[0.3em] font-bold text-brand-accent">Our Vision</span>
+                </div>
+                <p className="text-2xl md:text-4xl font-display font-bold leading-tight">
+                  An Africa where every young person is emotionally resilient and economically empowered to build a meaningful future.
+                </p>
+             </motion.div>
+
+             <motion.div 
+               {...revealProps} 
+               transition={{ delay: 0.2 }} 
+               className="p-8 md:p-12 bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors duration-500 rounded-lg"
+             >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-blue-500/20 rounded-full text-blue-400">
+                    <Target size={32} />
+                  </div>
+                  <span className="text-sm uppercase tracking-[0.3em] font-bold text-blue-400">Our Mission</span>
+                </div>
+                <p className="text-2xl md:text-4xl font-display font-bold leading-tight">
+                  To catalyze social change through institutional partnerships, research-backed strategy, and direct grassroots intervention.
+                </p>
+             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Team Section */}
+      <section className="py-24 sm:py-32 px-6 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...revealProps} className="max-w-3xl mb-20">
+            <span className="text-[11px] uppercase tracking-[0.4em] font-black text-slate-400 block mb-4">
+              Our Leadership
+            </span>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 mb-8">The Minds Behind The Mission.</h2>
+            <p className="text-lg text-slate-600 font-light leading-relaxed">
+              Our team is composed of dedicated professionals who combine diverse expertise with a shared passion for African development. From strategic planning to grassroots mobilization, we are united by a commitment to excellence and impact.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            {team.map((member, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="relative aspect-[3/4] mb-6 bg-slate-200 overflow-hidden">
+                  {member.image ? (
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-300">
+                      <User size={64} />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <p className="text-white text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                      {member.bio}
+                    </p>
+                  </div>
+                </div>
+                <h3 className="text-xl font-display font-bold text-slate-900 mb-1">{member.name}</h3>
+                <p className="text-sm font-bold text-brand-accent uppercase tracking-wider">{member.role}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

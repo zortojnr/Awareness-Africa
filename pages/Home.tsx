@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Globe, Users, Shield, Zap } from 'lucide-react';
@@ -8,6 +7,10 @@ import CoreValues from '../components/CoreValues';
 import Button from '../components/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { openInvolvementModal } from '../utils/events';
+
+// Import images
+import img10 from '../assets/images/10.jpeg';
+import img16 from '../assets/images/16.jpeg';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },
@@ -34,7 +37,7 @@ const Home: React.FC = () => {
       <section id="about" className="py-20 sm:py-32 px-6 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1526662095394-13650df369ca?q=80&w=2000&auto=format&fit=crop" 
+            src={img10} 
             alt="Community" 
             className="w-full h-full object-cover opacity-20 grayscale"
           />
@@ -64,7 +67,7 @@ const Home: React.FC = () => {
           >
             <div className="aspect-[4/5] bg-white relative overflow-hidden group shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1000&auto=format&fit=crop" 
+                src={img16} 
                 alt="Impact" 
                 className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
               />
