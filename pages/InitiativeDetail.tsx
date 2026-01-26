@@ -17,7 +17,8 @@ import {
   Target,
   FileCheck,
   TrendingUp,
-  MessageCircle
+  MessageCircle,
+  ClipboardCheck
 } from 'lucide-react';
 import Button from '../components/Button';
 import { motion } from 'framer-motion';
@@ -257,6 +258,10 @@ const MenForwardPage: React.FC = () => {
     window.open('https://chat.whatsapp.com/example-link', '_blank');
   };
 
+  const handleFormFill = () => {
+    window.open('https://forms.gle/your-men-forward-form-link', '_blank');
+  };
+
   return (
     <div className="bg-white min-h-screen selection:bg-[#1976D2] selection:text-white overflow-x-hidden">
       <div className="bg-white border-b border-slate-50 py-3 px-6 sticky top-[72px] z-40">
@@ -342,6 +347,26 @@ const MenForwardPage: React.FC = () => {
                </Button>
             </div>
          </div>
+      </section>
+
+      <SectionDivider color="bg-[#1976D2]" weight="h-[3px]" />
+
+      {/* New Data Collection Section */}
+      <section className="py-24 sm:py-32 px-6 bg-slate-50">
+        <div className="max-w-2xl mx-auto flex flex-col items-center text-center">
+          <div className="w-12 h-12 bg-[#1976D2]/10 flex items-center justify-center mb-8">
+            <ClipboardCheck size={24} className="text-[#1976D2]" />
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 mb-6">Direct Engagement Survey</h3>
+          <p className="text-base text-slate-600 font-light mb-10 leading-relaxed">
+            Your voice is essential to our research and intervention design. Please take a few moments to provide your insights, helping us build more effective support systems for men across the region.
+          </p>
+          <div className="w-full flex justify-center">
+            <Button variant="blue" className="w-full sm:w-auto px-16" onClick={handleFormFill}>
+              Fill Here
+            </Button>
+          </div>
+        </div>
       </section>
 
       <SectionDivider color="bg-[#1976D2]" weight="h-[3px]" />
