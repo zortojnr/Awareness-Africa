@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 // Image Imports
 import methodologyImg from '../assets/images/1a.jpeg';
 import johnBabaImg from '../assets/images/Johnbaba.jpeg';
-import victorImg from '../assets/images/Victor.jpeg';
+import danImg from '../assets/images/Dan.jpeg';
 import rhodaImg from '../assets/images/Rhoda.jpeg';
 import motunrayoImg from '../assets/images/Motunrayo.jpeg';
 import tayeImg from '../assets/images/Taye.png';
@@ -42,7 +42,7 @@ const About: React.FC = () => {
     {
       name: "Victor Chukwudalu Okafor",
       role: "Program Coordinator",
-      image: victorImg,
+      image: danImg,
       bio: "Driving program impact through strategic planning and stakeholder engagement."
     },
     {
