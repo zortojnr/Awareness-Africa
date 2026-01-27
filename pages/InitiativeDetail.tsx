@@ -294,7 +294,7 @@ const MenForwardPage: React.FC = () => {
   };
 
   const handleFormFill = () => {
-    window.open('https://forms.gle/your-men-forward-form-link', '_blank');
+    window.open('https://docs.google.com/forms/u/0/d/e/1FAIpQLSf6dKKzlpsOh6vHKH_vgPxzmD2F5FsZwa3OvQajYt3MtOLYHg/', '_blank');
   };
 
   return (
