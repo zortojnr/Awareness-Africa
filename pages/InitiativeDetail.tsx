@@ -349,6 +349,25 @@ const MenForwardPage: React.FC = () => {
 
       <SectionDivider color="bg-[#1976D2]" weight="h-[3px]" />
 
+      {/* Founder's Statement Section */}
+      <section className="py-20 sm:py-32 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div {...revealProps}>
+            <h2 className="text-[10px] uppercase tracking-[0.6em] font-bold text-[#1976D2] mb-8 block">Founder’s Statement</h2>
+            <p className="text-lg sm:text-xl text-slate-700 font-light leading-relaxed mb-10">
+              MenForward Africa was born from a deeply personal and urgent realization: While conversations around mental health are gradually gaining visibility in Africa, men are still largely left behind.
+            </p>
+            <div className="border-l-4 border-[#1976D2] pl-8 py-2">
+              <p className="text-lg sm:text-2xl font-display text-slate-800 italic leading-relaxed">
+                “In Nigeria and the continent, men are raised to be strong, silent, and self-sufficient. From a young age, many boys are taught explicitly or implicitly that vulnerability is weakness, that asking for help is failure, and that emotional pain should be endured in isolation. Over time, this silence compounds. It shows up as depression, anger, withdrawal, substance abuse, and in far too many cases, suicide.”
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <SectionDivider color="bg-[#1976D2]" weight="h-[3px]" />
+
       <section className="py-20 sm:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-[10px] uppercase tracking-[0.5em] font-bold text-[#1976D2] mb-8 block">The Silence Crisis</h2>
@@ -367,6 +386,75 @@ const MenForwardPage: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <SectionDivider color="bg-[#1976D2]" weight="h-[3px]" />
+
+      {/* Programs Section */}
+      <section className="py-20 sm:py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...revealProps}>
+            <h2 className="text-[10px] uppercase tracking-[0.6em] font-bold text-[#1976D2] mb-12 block">Programs</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+              {/* Program 1 */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-bold text-[#1976D2]">01</span>
+                  <h3 className="text-xl font-display font-bold text-slate-900">Digital Peer Support Circles</h3>
+                </div>
+                <ul className="pl-8 space-y-2 text-sm text-slate-600 font-light">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Moderated WhatsApp / Telegram groups</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Grouped by age and life stage</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Safe, confidential discussions</li>
+                </ul>
+              </div>
+
+              {/* Program 2 */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-bold text-[#1976D2]">02</span>
+                  <h3 className="text-xl font-display font-bold text-slate-900">MenForward Talks</h3>
+                </div>
+                <div className="pl-8 text-sm text-slate-600 font-light space-y-3">
+                  <p className="italic text-slate-400">Virtual conversations with:</p>
+                  <ul className="space-y-1 mb-3">
+                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Psychologists</li>
+                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Therapists</li>
+                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Relatable male figures (younger professionals)</li>
+                  </ul>
+                  <p className="italic text-slate-400">Topics:</p>
+                  <p>Money stress, Masculinity, Relationships, Failure, Purpose</p>
+                </div>
+              </div>
+
+              {/* Program 3 */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-bold text-[#1976D2]">03</span>
+                  <h3 className="text-xl font-display font-bold text-slate-900">Youth Mental Health Education</h3>
+                </div>
+                <ul className="pl-8 space-y-2 text-sm text-slate-600 font-light">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Emotional literacy for boys (ages 12–25)</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> School partnerships (long-term)</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Online workshops and content</li>
+                </ul>
+              </div>
+
+              {/* Program 4 */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-bold text-[#1976D2]">04</span>
+                  <h3 className="text-xl font-display font-bold text-slate-900">Advocacy & Awareness Campaigns</h3>
+                </div>
+                <ul className="pl-8 space-y-2 text-sm text-slate-600 font-light">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Social media storytelling</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Suicide prevention days</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-[#1976D2] rounded-full" /> Policy engagement</li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
