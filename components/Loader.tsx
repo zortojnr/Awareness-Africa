@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import loadingAsset from '../assets/images/loading-asset.png';
 
 interface LoaderProps {
   onComplete: () => void;
 }
 
 const Loader: React.FC<LoaderProps> = ({ onComplete }) => {
-  const [stage, setStage] = useState<'image' | 'slogan' | 'exit'>('image');
+  const [stage, setStage] = useState<'animation' | 'slogan' | 'exit'>('animation');
 
   useEffect(() => {
-    // 0s - 2.5s: Image
+    // 0s - 2.5s: Animation
     const timer1 = setTimeout(() => {
       setStage('slogan');
     }, 2500);
@@ -36,20 +35,43 @@ const Loader: React.FC<LoaderProps> = ({ onComplete }) => {
       className="fixed inset-0 z-[9999] bg-white flex items-center justify-center overflow-hidden"
     >
       <AnimatePresence mode="wait">
-        {stage === 'image' && (
+        {stage === 'animation' && (
           <motion.div
-            key="loader-image"
+            key="loader-animation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="w-full h-full flex items-center justify-center p-10"
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center gap-6"
           >
-            <img 
-              src={loadingAsset} 
-              alt="Loading..." 
-              className="max-w-[150px] md:max-w-[200px] w-full h-auto object-contain"
-            />
+            {/* Animated Bar Loading Indicator */}
+            <div className="flex items-center gap-2">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <motion.div
+                  key={i}
+                  initial={{ height: 20, opacity: 0.3 }}
+                  animate={{ 
+                    height: [20, 60, 20],
+                    opacity: [0.3, 1, 0.3],
+                    backgroundColor: ["#0F172A", "#C5A059", "#0F172A"]
+                  }}
+                  transition={{
+                    duration: 1,
+                    repeat: Infinity,
+                    delay: i * 0.15,
+                    ease: "easeInOut"
+                  }}
+                  className="w-2 rounded-full"
+                />
+              ))}
+            </div>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-400 mt-4"
+            >
+              Loading Resources
+            </motion.p>
           </motion.div>
         )}
 

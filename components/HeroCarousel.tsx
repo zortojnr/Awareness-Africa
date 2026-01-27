@@ -27,7 +27,7 @@ const SLIDES = [
     id: 3,
     title: "MenForward Africa",
     subtitle: "Redefining masculinity. Normalizing mental health support for African men.",
-    image: null,
+    image: "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?q=80&w=2574&auto=format&fit=crop",
     accent: "#1976D2",
     cta: "Join the Conversation"
   }
