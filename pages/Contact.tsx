@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
 import Button from '../components/Button';
+import { adminService } from '../services/adminService';
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },
@@ -16,6 +17,32 @@ const SectionDivider = () => (
 );
 
 const Contact: React.FC = () => {
+  const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formState.name || !formState.email) return;
+
+    setStatus('submitting');
+    
+    // Simulate network delay then save
+    setTimeout(() => {
+      try {
+        adminService.saveInquiry({
+          name: formState.name,
+          email: formState.email,
+          type: 'contact',
+          message: formState.message
+        });
+        setStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+      } catch (err) {
+        setStatus('error');
+      }
+    }, 1000);
+  };
+
   return (
     <main className="bg-white selection:bg-brand-accent selection:text-white overflow-x-hidden">
       <section className="relative min-h-[50vh] flex flex-col items-center justify-center bg-slate-900 py-32 px-6">
@@ -92,23 +119,68 @@ const Contact: React.FC = () => {
               className="bg-white p-8 md:p-12 border border-slate-200 shadow-xl"
             >
               <h3 className="text-2xl font-display font-bold text-slate-900 mb-10">Formal Inquiry</h3>
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Name</label>
-                    <input type="text" className="w-full bg-slate-50 border-2 border-slate-100 px-4 py-3 text-sm focus:border-brand-accent outline-none" />
+              
+              {status === 'success' ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-green-50 border border-green-100 p-8 text-center"
+                >
+                  <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
+                  <h4 className="text-xl font-bold text-slate-900 mb-2">Message Sent</h4>
+                  <p className="text-slate-600 text-sm mb-6">Thank you for reaching out. Our team will review your inquiry and respond shortly.</p>
+                  <Button variant="outline" onClick={() => setStatus('idle')} className="text-xs">Send Another</Button>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Name</label>
+                      <input 
+                        type="text" 
+                        required
+                        value={formState.name}
+                        onChange={(e) => setFormState({...formState, name: e.target.value})}
+                        className="w-full bg-slate-50 border-2 border-slate-100 px-4 py-3 text-sm focus:border-brand-accent outline-none transition-colors" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Email</label>
+                      <input 
+                        type="email" 
+                        required
+                        value={formState.email}
+                        onChange={(e) => setFormState({...formState, email: e.target.value})}
+                        className="w-full bg-slate-50 border-2 border-slate-100 px-4 py-3 text-sm focus:border-brand-accent outline-none transition-colors" 
+                      />
+                    </div>
                   </div>
+                  
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Email</label>
-                    <input type="email" className="w-full bg-slate-50 border-2 border-slate-100 px-4 py-3 text-sm focus:border-brand-accent outline-none" />
+                    <label className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Message Context</label>
+                    <textarea 
+                      rows={4} 
+                      value={formState.message}
+                      onChange={(e) => setFormState({...formState, message: e.target.value})}
+                      className="w-full bg-slate-50 border-2 border-slate-100 px-4 py-3 text-sm focus:border-brand-accent outline-none transition-colors resize-none" 
+                    />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Message</label>
-                  <textarea rows={6} className="w-full bg-slate-50 border-2 border-slate-100 px-4 py-3 text-sm focus:border-brand-accent outline-none resize-none" />
-                </div>
-                <Button variant="primary" className="w-full py-4">Send Message</Button>
-              </form>
+
+                  {status === 'error' && (
+                    <div className="flex items-center gap-2 text-red-500 text-xs">
+                      <AlertCircle size={14} /> Failed to send message. Please try again.
+                    </div>
+                  )}
+
+                  <Button 
+                    variant="primary" 
+                    className={`w-full py-4 ${status === 'submitting' ? 'opacity-70 cursor-wait' : ''}`}
+                    disabled={status === 'submitting'}
+                  >
+                    {status === 'submitting' ? 'Transmitting...' : 'Submit Inquiry'}
+                  </Button>
+                </form>
+              )}
             </motion.div>
           </div>
         </div>

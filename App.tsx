@@ -15,6 +15,13 @@ import Loader from './components/Loader';
 import FloatingSlogan from './components/FloatingSlogan';
 import { AnimatePresence, motion } from 'framer-motion';
 
+// Admin Imports
+import Login from './pages/admin/Login';
+import AdminLayout from './components/admin/AdminLayout';
+import Overview from './pages/admin/Overview';
+import Inquiries from './pages/admin/Inquiries';
+import { adminService } from './services/adminService';
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -46,6 +53,10 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleOpen = () => setIsModalOpen(true);
     window.addEventListener('open-involvement-modal', handleOpen);
+    
+    // Track User Visit
+    adminService.trackVisit();
+
     return () => window.removeEventListener('open-involvement-modal', handleOpen);
   }, []);
 
@@ -76,6 +87,18 @@ const App: React.FC = () => {
                   <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
                   <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
                   <Route path="/initiatives/:slug" element={<PageWrapper><InitiativeDetail /></PageWrapper>} />
+                  
+                  {/* Admin Routes */}
+                  <Route path="/admin" element={<Login />} />
+                  <Route path="/admin" element={<AdminLayout />}>
+                    <Route path="dashboard" element={<Overview />} />
+                    <Route path="inquiries" element={<Inquiries />} />
+                    {/* Placeholders for future expansion */}
+                    <Route path="pages" element={<div className="text-slate-400 p-10 text-center">Page Management Module (Coming Soon)</div>} />
+                    <Route path="media" element={<div className="text-slate-400 p-10 text-center">Media Library Module (Coming Soon)</div>} />
+                    <Route path="donations" element={<div className="text-slate-400 p-10 text-center">Donation Control Module (Coming Soon)</div>} />
+                  </Route>
+
                   <Route path="*" element={
                     <PageWrapper>
                       <div className="h-[80vh] flex items-center justify-center">
