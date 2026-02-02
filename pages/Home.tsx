@@ -12,6 +12,7 @@ import { openInvolvementModal } from '../utils/events';
 import img10 from '../assets/images/10.jpeg';
 import img16 from '../assets/images/16.jpeg';
 import blueLogo from '../assets/images/AAF blue logo (1).png';
+import whiteLogo from '../assets/images/AAF White.png';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },
@@ -161,6 +162,17 @@ const Home: React.FC = () => {
         transition={{ duration: 1 }}
         className="py-20 sm:py-32 px-6 overflow-hidden relative"
       >
+        {/* Abstract Background Logo for Metrics */}
+        <div 
+          className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none"
+          style={{
+            backgroundImage: `url("${whiteLogo}")`,
+            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div {...revealProps} className="text-center mb-12 md:mb-20">
             <motion.span 

@@ -7,7 +7,7 @@ import { NAV_LINKS, COLORS } from '../constants';
 import { openInvolvementModal } from '../utils/events';
 
 // Logo Imports
-import logoWhite from '../assets/images/AAF White.png';
+import logoDefault from '../assets/images/AAF blue logo (1).png';
 import logoMen from '../assets/images/Men logo.png';
 import logoHer from '../assets/images/HerAwareness Logo.png';
 
@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
     }
     
     // Default logo for all other pages
-    return logoWhite;
+    return logoDefault;
   };
 
   const currentLogo = getLogo();

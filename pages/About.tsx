@@ -71,7 +71,7 @@ const About: React.FC = () => {
       <section className="pt-24 pb-32 sm:pt-40 sm:pb-48 px-6 relative">
         {/* Hero Background Logo */}
         <div 
-          className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+          className="absolute inset-0 z-0 opacity-[0.12] pointer-events-none"
           style={{
             backgroundImage: `url("${blueLogo}")`,
             backgroundPosition: 'center',
