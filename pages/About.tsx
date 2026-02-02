@@ -11,7 +11,7 @@ import danImg from '../assets/images/Dan.jpeg';
 import rhodaImg from '../assets/images/Rhoda.jpeg';
 import motunrayoImg from '../assets/images/Motunrayo.jpeg';
 import tayeImg from '../assets/images/Taye.png';
-import blueLogo from '../assets/images/AAF blue logo (1).png';
+import { useContent } from '../hooks/useContent';
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },
@@ -25,6 +25,7 @@ const SectionDivider = () => (
 );
 
 const About: React.FC = () => {
+  const { content, getImage } = useContent();
   const navigate = useNavigate();
 
   const team = [
@@ -73,7 +74,7 @@ const About: React.FC = () => {
         <div 
           className="absolute inset-0 z-0 opacity-[0.12] pointer-events-none"
           style={{
-            backgroundImage: `url("${blueLogo}")`,
+            backgroundImage: `url("${getImage('aboutHeroBg', '../assets/images/AAF blue logo (1).png')}")`,
             backgroundPosition: 'center',
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat'
@@ -89,10 +90,10 @@ const About: React.FC = () => {
               </span>
             </div>
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-slate-900 mb-10 leading-[1.1] tracking-tighter">
-              A PAN-AFRICAN <br/><span className="text-brand-accent">BACKBONE.</span>
+              {content.about.heroTitle}
             </h1>
             <p className="text-base sm:text-xl md:text-2xl font-display text-slate-800 leading-tight font-light max-w-4xl italic">
-              "We provide the strategic architecture necessary for specialized initiatives to thrive, building sustainable systems across the continent."
+              {content.about.heroSubtitle}
             </p>
           </motion.div>
         </div>
@@ -160,10 +161,10 @@ const About: React.FC = () => {
                   <div className="p-3 bg-brand-accent/20 rounded-full text-brand-accent">
                     <Globe size={32} />
                   </div>
-                  <span className="text-sm uppercase tracking-[0.3em] font-bold text-brand-accent">Our Vision</span>
+                  <span className="text-sm uppercase tracking-[0.3em] font-bold text-brand-accent">{content.about.visionTitle}</span>
                 </div>
                 <p className="text-2xl md:text-4xl font-display font-bold leading-tight">
-                  An Africa where every young person is emotionally resilient and economically empowered to build a meaningful future.
+                  {content.about.visionText}
                 </p>
              </motion.div>
 
@@ -176,10 +177,10 @@ const About: React.FC = () => {
                   <div className="p-3 bg-blue-500/20 rounded-full text-blue-400">
                     <Target size={32} />
                   </div>
-                  <span className="text-sm uppercase tracking-[0.3em] font-bold text-blue-400">Our Mission</span>
+                  <span className="text-sm uppercase tracking-[0.3em] font-bold text-blue-400">{content.about.missionTitle}</span>
                 </div>
                 <p className="text-2xl md:text-4xl font-display font-bold leading-tight">
-                  To catalyze social change through institutional partnerships, research-backed strategy, and direct grassroots intervention.
+                  {content.about.missionText}
                 </p>
              </motion.div>
           </div>

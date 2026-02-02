@@ -21,8 +21,23 @@ export interface SiteContent {
   home: {
     heroTitle: string;
     heroSubtitle: string;
+    missionTitle: string;
+    missionText: string;
   };
-  // Add more sections as needed
+  about: {
+    heroTitle: string;
+    heroSubtitle: string;
+    visionTitle: string;
+    visionText: string;
+    missionTitle: string;
+    missionText: string;
+  };
+  programs: {
+    heroTitle: string;
+    heroSubtitle: string;
+  };
+  // Dynamic Image Map (key: url)
+  images: { [key: string]: string }; 
 }
 
 // Keys
@@ -37,8 +52,23 @@ const STORAGE_KEYS = {
 const DEFAULT_CONTENT: SiteContent = {
   home: {
     heroTitle: 'A Future Defined by Empowerment.',
-    heroSubtitle: 'To empower youth, amplify underrepresented voices, and create safe, inclusive spaces where emotional well-being and community resilience are nurtured.',
+    heroSubtitle: '"To empower youth, amplify underrepresented voices, and create safe, inclusive spaces where emotional well-being and community resilience are nurtured."',
+    missionTitle: 'A PAN-AFRICAN BACKBONE.',
+    missionText: '"We provide the strategic architecture necessary for specialized initiatives to thrive, building sustainable systems across the continent."'
   },
+  about: {
+    heroTitle: 'A PAN-AFRICAN BACKBONE.',
+    heroSubtitle: '"We provide the strategic architecture necessary for specialized initiatives to thrive, building sustainable systems across the continent."',
+    visionTitle: 'Our Vision',
+    visionText: 'An Africa where every young person is emotionally resilient and economically empowered to build a meaningful future.',
+    missionTitle: 'Our Mission',
+    missionText: 'To catalyze social change through institutional partnerships, research-backed strategy, and direct grassroots intervention.'
+  },
+  programs: {
+    heroTitle: 'STRATEGIC EXECUTION.',
+    heroSubtitle: '"We move beyond reactive charity to build community-driven systems focused on resilience and long-term impact."'
+  },
+  images: {}
 };
 
 // Service
@@ -119,13 +149,31 @@ export const adminService = {
   // --- Content CMS ---
   getContent: (): SiteContent => {
     const data = localStorage.getItem(STORAGE_KEYS.CONTENT);
-    return data ? JSON.parse(data) : DEFAULT_CONTENT;
+    if (data) {
+      const parsed = JSON.parse(data);
+      // Deep merge with default to ensure new fields exist
+      return { ...DEFAULT_CONTENT, ...parsed, home: { ...DEFAULT_CONTENT.home, ...(parsed.home || {}) }, about: { ...DEFAULT_CONTENT.about, ...(parsed.about || {}) }, programs: { ...DEFAULT_CONTENT.programs, ...(parsed.programs || {}) } };
+    }
+    return DEFAULT_CONTENT;
   },
 
   updateContent: (section: keyof SiteContent, data: any) => {
     const content = adminService.getContent();
+    // @ts-ignore
     content[section] = { ...content[section], ...data };
     localStorage.setItem(STORAGE_KEYS.CONTENT, JSON.stringify(content));
+  },
+
+  // Image Management (Mock)
+  updateImage: (key: string, url: string) => {
+    const content = adminService.getContent();
+    content.images = { ...content.images, [key]: url };
+    localStorage.setItem(STORAGE_KEYS.CONTENT, JSON.stringify(content));
+  },
+
+  getImage: (key: string, defaultUrl: string): string => {
+    const content = adminService.getContent();
+    return content.images?.[key] || defaultUrl;
   },
   
   // --- Export ---

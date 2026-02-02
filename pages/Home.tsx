@@ -13,6 +13,7 @@ import img10 from '../assets/images/10.jpeg';
 import img16 from '../assets/images/16.jpeg';
 import blueLogo from '../assets/images/AAF blue logo (1).png';
 import whiteLogo from '../assets/images/AAF White.png';
+import { useContent } from '../hooks/useContent';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },
@@ -26,6 +27,7 @@ const SectionDivider = () => (
 );
 
 const Home: React.FC = () => {
+  const { content } = useContent();
   const [activeImpactColor, setActiveImpactColor] = useState<string>('#FAF9F6');
   const [hoveredBranch, setHoveredBranch] = useState<'her' | 'men' | null>(null);
   const navigate = useNavigate();
@@ -53,11 +55,11 @@ const Home: React.FC = () => {
           >
             <span className="text-[11px] uppercase tracking-[0.4em] font-black text-brand-accent mb-6 block">Our Purpose</span>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-slate-900 mb-8 leading-[1.1]">
-              A Future Defined by <br/><span className="text-brand-accent">Empowerment.</span>
+              {content.home.heroTitle.split(' ').slice(0, -1).join(' ')} <br/><span className="text-brand-accent">{content.home.heroTitle.split(' ').slice(-1)}</span>
             </h2>
             <div className="relative">
               <p className="text-base md:text-xl font-display text-slate-600 italic leading-relaxed border-l-2 border-brand-accent pl-6 py-2 max-w-2xl">
-                "To empower youth, amplify underrepresented voices, and create safe, inclusive spaces where emotional well-being and community resilience are nurtured."
+                {content.home.heroSubtitle}
               </p>
             </div>
           </motion.div>

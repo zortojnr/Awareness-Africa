@@ -20,6 +20,7 @@ import Login from './pages/admin/Login';
 import AdminLayout from './components/admin/AdminLayout';
 import Overview from './pages/admin/Overview';
 import Inquiries from './pages/admin/Inquiries';
+import ContentManager from './pages/admin/ContentManager';
 import { adminService } from './services/adminService';
 
 const ScrollToTop = () => {
@@ -93,8 +94,7 @@ const App: React.FC = () => {
                   <Route path="/admin" element={<AdminLayout />}>
                     <Route path="dashboard" element={<Overview />} />
                     <Route path="inquiries" element={<Inquiries />} />
-                    {/* Placeholders for future expansion */}
-                    <Route path="pages" element={<div className="text-slate-400 p-10 text-center">Page Management Module (Coming Soon)</div>} />
+                    <Route path="pages" element={<ContentManager />} />
                     <Route path="media" element={<div className="text-slate-400 p-10 text-center">Media Library Module (Coming Soon)</div>} />
                     <Route path="donations" element={<div className="text-slate-400 p-10 text-center">Donation Control Module (Coming Soon)</div>} />
                   </Route>
