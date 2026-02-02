@@ -11,6 +11,7 @@ import { openInvolvementModal } from '../utils/events';
 // Import images
 import img10 from '../assets/images/10.jpeg';
 import img16 from '../assets/images/16.jpeg';
+import blueLogo from '../assets/images/AAF blue logo (1).png';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },
@@ -215,6 +216,13 @@ const Home: React.FC = () => {
       <SectionDivider />
 
       <section id="get-involved" className="py-20 sm:py-32 px-6 relative overflow-hidden">
+        {/* Abstract Background Element */}
+        <img 
+          src={blueLogo} 
+          alt="" 
+          className="absolute -right-20 -bottom-20 w-[300px] md:w-[500px] opacity-[0.03] pointer-events-none select-none"
+        />
+        
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div 
             {...revealProps}

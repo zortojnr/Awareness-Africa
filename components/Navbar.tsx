@@ -6,6 +6,11 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { NAV_LINKS, COLORS } from '../constants';
 import { openInvolvementModal } from '../utils/events';
 
+// Logo Imports
+import logoWhite from '../assets/images/AAF White.png';
+import logoMen from '../assets/images/Men logo.png';
+import logoHer from '../assets/images/HerAwareness Logo.png';
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -13,6 +18,29 @@ const Navbar: React.FC = () => {
   const [isInitiativesOpen, setIsInitiativesOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Determine which logo to display based on current path
+  const getLogo = () => {
+    // Check if we're in an initiatives section
+    // Note: This logic assumes your routes for initiatives contain these keywords
+    // Adjust logic if your routes are different (e.g. /initiatives/menforward)
+    const path = location.pathname.toLowerCase();
+    
+    // Check specifically for MenForward related content
+    if (path.includes('menforward') || path.includes('men-forward')) {
+      return logoMen;
+    }
+    
+    // Check specifically for HerAwareness related content
+    if (path.includes('herawareness') || path.includes('her-awareness')) {
+      return logoHer;
+    }
+    
+    // Default logo for all other pages
+    return logoWhite;
+  };
+
+  const currentLogo = getLogo();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,18 +105,17 @@ const Navbar: React.FC = () => {
         : 'bg-white py-3 lg:py-4 border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* LOGO LEFT - Refined Spacing */}
-        <button 
+        <Link 
+          to="/" 
           onClick={() => handleNavClick('#home')} 
-          className="flex flex-col items-start group focus:outline-none shrink-0"
+          className="relative z-50 block shrink-0"
         >
-          <span className="font-display text-lg sm:text-2xl font-bold tracking-[0.05em] uppercase leading-none text-brand-primary transition-colors group-hover:text-brand-accent">
-            Awareness Africa
-          </span>
-          <span className="text-[8px] tracking-[0.4em] font-medium uppercase opacity-60 text-brand-primary mt-1">
-            Foundation
-          </span>
-        </button>
+          <img 
+            src={currentLogo} 
+            alt="Awareness Africa Foundation" 
+            className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
+          />
+        </Link>
 
         {/* DESKTOP NAV */}
         <div className="hidden lg:flex items-center space-x-10">

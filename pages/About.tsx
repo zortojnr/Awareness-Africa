@@ -11,6 +11,7 @@ import danImg from '../assets/images/Dan.jpeg';
 import rhodaImg from '../assets/images/Rhoda.jpeg';
 import motunrayoImg from '../assets/images/Motunrayo.jpeg';
 import tayeImg from '../assets/images/Taye.png';
+import blueLogo from '../assets/images/AAF blue logo (1).png';
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },
@@ -67,8 +68,19 @@ const About: React.FC = () => {
 
   return (
     <main className="bg-white relative selection:bg-brand-accent selection:text-white overflow-x-hidden">
-      <section className="pt-24 pb-32 sm:pt-40 sm:pb-48 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="pt-24 pb-32 sm:pt-40 sm:pb-48 px-6 relative">
+        {/* Hero Background Logo */}
+        <div 
+          className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage: `url("${blueLogo}")`,
+            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div {...revealProps}>
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px w-10 bg-brand-accent" />
