@@ -11,6 +11,7 @@ import danImg from '../assets/images/Dan.jpeg';
 import rhodaImg from '../assets/images/Rhoda.jpeg';
 import motunrayoImg from '../assets/images/Motunrayo.jpeg';
 import tayeImg from '../assets/images/Taye.png';
+import blueLogo from '../assets/images/AAF blue logo (1).png';
 import { useContent } from '../hooks/useContent';
 
 const revealProps = {
@@ -74,7 +75,7 @@ const About: React.FC = () => {
         <div 
           className="absolute inset-0 z-0 opacity-[0.12] pointer-events-none"
           style={{
-            backgroundImage: `url("${getImage('aboutHeroBg', '../assets/images/AAF blue logo (1).png')}")`,
+            backgroundImage: `url("${blueLogo}")`,
             backgroundPosition: 'center',
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat'
