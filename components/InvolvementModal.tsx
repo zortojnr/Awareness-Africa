@@ -12,6 +12,7 @@ interface InvolvementModalProps {
 
 const InvolvementModal: React.FC<InvolvementModalProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
+  const [showSponsor, setShowSponsor] = React.useState(false);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -97,16 +98,43 @@ const InvolvementModal: React.FC<InvolvementModalProps> = ({ isOpen, onClose }) 
                       <div className="space-y-4">
                         <div className="flex justify-between items-end border-b border-slate-200 pb-2">
                           <span className="text-[9px] uppercase tracking-widest text-slate-400">Account Name</span>
-                          <span className="text-xs font-bold text-slate-900">Awareness Africa Foundation</span>
+                          <span className="text-xs font-bold text-slate-900">Victoria Odesanya (Founder, Awareness Africa)</span>
                         </div>
                         <div className="flex justify-between items-end border-b border-slate-200 pb-2">
-                          <span className="text-[9px] uppercase tracking-widest text-slate-400">Bank Name</span>
-                          <span className="text-xs font-bold text-slate-900">Access Bank PLC</span>
+                          <span className="text-[9px] uppercase tracking-widest text-slate-400">Bank</span>
+                          <span className="text-xs font-bold text-slate-900">UBA</span>
                         </div>
                         <div className="flex justify-between items-end border-b border-slate-200 pb-2">
                           <span className="text-[9px] uppercase tracking-widest text-slate-400">Account Number</span>
-                          <span className="text-base md:text-lg font-display font-bold text-slate-900">1234567890</span>
+                          <span className="text-sm font-bold text-brand-accent font-mono">2182926086</span>
                         </div>
+                        <div className="flex justify-between items-end border-b border-slate-200 pb-2">
+                          <span className="text-[9px] uppercase tracking-widest text-slate-400">Reference</span>
+                          <span className="text-xs font-bold text-slate-900">For: Awareness Africa Foundation</span>
+                        </div>
+                        
+                         <Button 
+                            variant="secondary" 
+                            className="w-full flex items-center justify-center gap-3"
+                            onClick={() => setShowSponsor(true)}
+                          >
+                           <CreditCard size={14} /> Secure Donation Link
+                         </Button>
+
+                         {showSponsor && (
+                           <motion.div 
+                             initial={{ opacity: 0, height: 0 }} 
+                             animate={{ opacity: 1, height: 'auto' }}
+                             className="pt-2"
+                           >
+                             <Button 
+                                variant="outline" 
+                                className="w-full flex items-center justify-center gap-3 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white"
+                              >
+                               <Heart size={14} /> Sponsor a child
+                             </Button>
+                           </motion.div>
+                         )}
                       </div>
                     </div>
 

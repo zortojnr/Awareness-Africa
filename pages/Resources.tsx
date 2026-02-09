@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Download, BookOpen, ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
+import blueLogo from '../assets/images/AAF blue logo (1).png';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },
@@ -20,8 +21,19 @@ const Resources: React.FC = () => {
   return (
     <main className="bg-white selection:bg-slate-900 selection:text-white overflow-x-hidden">
       {/* Hero Section - Minimal & Architectural */}
-      <section className="pt-32 pb-24 sm:pt-48 sm:pb-32 px-6 bg-white">
-        <div className="max-w-7xl mx-auto border-l-2 border-slate-900 pl-8 md:pl-12">
+      <section className="pt-32 pb-24 sm:pt-48 sm:pb-32 px-6 bg-white relative">
+        {/* Hero Background Logo */}
+        <div 
+          className="absolute inset-0 z-0 opacity-[0.12] pointer-events-none"
+          style={{
+            backgroundImage: `url("${blueLogo}")`,
+            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+
+        <div className="max-w-7xl mx-auto border-l-2 border-slate-900 pl-8 md:pl-12 relative z-10">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
