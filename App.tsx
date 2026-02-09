@@ -9,6 +9,7 @@ import Programs from './pages/Programs';
 import Volunteer from './pages/Volunteer';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
+import Payment from './pages/Payment';
 import InvolvementModal from './components/InvolvementModal';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
@@ -87,6 +88,7 @@ const App: React.FC = () => {
                   <Route path="/volunteer" element={<PageWrapper><Volunteer /></PageWrapper>} />
                   <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
                   <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+                  <Route path="/payment" element={<PageWrapper><Payment /></PageWrapper>} />
                   <Route path="/initiatives/:slug" element={<PageWrapper><InitiativeDetail /></PageWrapper>} />
                   
                   {/* Admin Routes */}

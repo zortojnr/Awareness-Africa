@@ -116,25 +116,15 @@ const InvolvementModal: React.FC<InvolvementModalProps> = ({ isOpen, onClose }) 
                          <Button 
                             variant="secondary" 
                             className="w-full flex items-center justify-center gap-3"
-                            onClick={() => setShowSponsor(true)}
+                            onClick={() => {
+                              onClose();
+                              navigate('/payment');
+                            }}
                           >
-                           <CreditCard size={14} /> Secure Donation Link
+                           <CreditCard size={14} /> Sponsor A Child
                          </Button>
 
-                         {showSponsor && (
-                           <motion.div 
-                             initial={{ opacity: 0, height: 0 }} 
-                             animate={{ opacity: 1, height: 'auto' }}
-                             className="pt-2"
-                           >
-                             <Button 
-                                variant="outline" 
-                                className="w-full flex items-center justify-center gap-3 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white"
-                              >
-                               <Heart size={14} /> Sponsor a child
-                             </Button>
-                           </motion.div>
-                         )}
+                         {/* Hidden legacy reveal logic - removed per instruction to replace functionality */}
                       </div>
                     </div>
 
