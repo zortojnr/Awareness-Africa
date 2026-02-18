@@ -33,7 +33,7 @@ const About: React.FC = () => {
     {
       name: "Victoria Odesanya",
       role: "Founder",
-      image: null, // Placeholder
+      image: founderImg,
       bio: "Visionary leader dedicated to transforming the African narrative through sustainable development."
     },
     {

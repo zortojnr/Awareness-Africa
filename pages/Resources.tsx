@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { FileText, Download, BookOpen, ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
 import blueLogo from '../assets/images/AAF blue logo (1).png';
+import behindClosedDoors from '../assets/Behind Closed Doors (1).pdf';
+import sexualViolence from '../assets/SEXUAL VIOLENCE.pdf';
 
 const revealProps = {
   initial: { opacity: 0, y: 30 },
@@ -92,10 +94,8 @@ const Resources: React.FC = () => {
                 
                 <div className="grid gap-px bg-slate-200 border border-slate-200">
                   {[
-                    { title: "2024 Institutional Progress Report", date: "Jan 2025", size: "2.4 MB" },
-                    { title: "HerAwareness: Intervention Strategy", date: "Nov 2024", size: "1.8 MB" },
-                    { title: "Governance & Transparency Policy", date: "Aug 2024", size: "0.9 MB" },
-                    { title: "Community Impact Assessment - Q3", date: "Oct 2024", size: "3.1 MB" }
+                    { title: "Behind Closed Doors", file: behindClosedDoors, author: "Taye Ikuponiyi", size: "PDF Document" },
+                    { title: "SEXUAL VIOLENCE", file: sexualViolence, author: "Taye Ikuponiyi", size: "PDF Document" }
                   ].map((doc, i) => (
                     <div key={i} className="group relative bg-white p-8 hover:bg-slate-50 transition-colors duration-300">
                       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -105,17 +105,16 @@ const Resources: React.FC = () => {
                           </div>
                           <div>
                             <h4 className="text-lg font-display font-bold text-slate-900 mb-2 group-hover:underline decoration-1 underline-offset-4">{doc.title}</h4>
-                            <div className="flex gap-4 text-[10px] uppercase tracking-widest font-medium text-slate-400">
-                              <span>{doc.date}</span>
-                              <span className="w-px h-3 bg-slate-300" />
+                            <div className="flex flex-col gap-1 text-[10px] uppercase tracking-widest font-medium text-slate-400">
                               <span>{doc.size}</span>
+                              <span className="text-brand-accent">Written by: {doc.author}</span>
                             </div>
                           </div>
                         </div>
                         
-                        <button className="self-start md:self-center flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-bold text-slate-900 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                        <a href={doc.file} download target="_blank" rel="noopener noreferrer" className="self-start md:self-center flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-bold text-slate-900 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                            Download <Download size={14} />
-                        </button>
+                        </a>
                       </div>
                     </div>
                   ))}
