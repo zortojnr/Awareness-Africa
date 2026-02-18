@@ -12,13 +12,14 @@ import rhodaImg from '../assets/images/Rhoda.jpeg';
 import motunrayoImg from '../assets/images/Motunrayo.jpeg';
 import tayeImg from '../assets/images/Taye.png';
 import blueLogo from '../assets/images/AAF blue logo (1).png';
+import founderImg from '../assets/images/founder.jpeg';
 import { useContent } from '../hooks/useContent';
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" },
-  transition: { duration: 1, ease: [0.22, 1, 0.36, 1] }
+  transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
 };
 
 const SectionDivider = () => (
@@ -83,7 +84,12 @@ const About: React.FC = () => {
         />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div {...revealProps}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          >
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px w-10 bg-brand-accent" />
               <span className="text-[11px] uppercase tracking-[0.4em] font-black text-slate-400">
@@ -97,6 +103,16 @@ const About: React.FC = () => {
               {content.about.heroSubtitle}
             </p>
           </motion.div>
+          
+        
+          
+          
+          
+          
+          
+          
+
+
         </div>
       </section>
 
@@ -105,7 +121,13 @@ const About: React.FC = () => {
       <section className="py-24 sm:py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <motion.div {...revealProps} className="space-y-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+              className="space-y-10"
+            >
               <h2 className="text-2xl md:text-4xl font-display font-bold text-slate-900">The Awareness <br/>Methodology.</h2>
               <p className="text-sm sm:text-base text-slate-600 font-light leading-relaxed">
                 Awareness Africa Foundation operates as an umbrella organization, providing resources and data-driven strategies to targeted interventions. We bridge the gap between institutional funding and grassroots impact.
@@ -148,14 +170,23 @@ const About: React.FC = () => {
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div {...revealProps} className="text-center mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+            className="text-center mb-20"
+          >
              <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Our Guiding North Star</h2>
              <div className="h-1 w-24 bg-brand-accent mx-auto" />
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
              <motion.div 
-               {...revealProps} 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true, margin: "-100px" }}
+               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
                className="p-8 md:p-12 bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors duration-500 rounded-lg"
              >
                 <div className="flex items-center gap-4 mb-6">
@@ -170,8 +201,10 @@ const About: React.FC = () => {
              </motion.div>
 
              <motion.div 
-               {...revealProps} 
-               transition={{ delay: 0.2 }} 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true, margin: "-100px" }}
+               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay: 0.2 }}
                className="p-8 md:p-12 bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors duration-500 rounded-lg"
              >
                 <div className="flex items-center gap-4 mb-6">
@@ -193,7 +226,13 @@ const About: React.FC = () => {
       {/* Team Section */}
       <section className="py-24 sm:py-32 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto">
-          <motion.div {...revealProps} className="max-w-3xl mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+            className="max-w-3xl mb-20"
+          >
             <span className="text-[11px] uppercase tracking-[0.4em] font-black text-slate-400 block mb-4">
               Our Leadership
             </span>
