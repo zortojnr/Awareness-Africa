@@ -1,3 +1,7 @@
+// Resend API integration - COMMENTED OUT until API key is available
+// TODO: Uncomment when Resend API key is configured
+
+/*
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -70,4 +74,10 @@ You can reply directly to this email to respond to ${name}.
     console.error('Error sending email:', error);
     return res.status(500).json({ error: 'Internal server error', details: error.message });
   }
+}
+*/
+
+// Placeholder handler to prevent build errors
+export default async function handler(req: any, res: any) {
+  return res.status(503).json({ error: 'Email service not configured. Resend API key required.' });
 }

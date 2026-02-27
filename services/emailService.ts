@@ -1,5 +1,8 @@
 // Email service for sending contact form inquiries via Resend API
+// COMMENTED OUT - Resend API key not available yet
+// TODO: Uncomment when Resend API key is configured
 
+/*
 interface ContactFormData {
   name: string;
   email: string;
@@ -7,11 +10,9 @@ interface ContactFormData {
 }
 
 export const emailService = {
-  /**
-   * Send contact form inquiry to info@awarenessafrica.org
-   * @param data Contact form data
-   * @returns Promise with success status
-   */
+  // Send contact form inquiry to info@awarenessafrica.org
+  // @param data Contact form data
+  // @returns Promise with success status
   sendInquiry: async (data: ContactFormData): Promise<{ success: boolean; error?: string }> => {
     try {
       // Determine API endpoint based on environment
@@ -46,4 +47,10 @@ export const emailService = {
       };
     }
   },
+};
+*/
+
+// Placeholder export to prevent import errors
+export const emailService = {
+  sendInquiry: async () => ({ success: false, error: 'Resend API not configured' })
 };

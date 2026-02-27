@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
 import Button from '../components/Button';
 import { adminService } from '../services/adminService';
-import { emailService } from '../services/emailService';
+// import { emailService } from '../services/emailService'; // Commented out - Resend API not available yet
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },
@@ -21,7 +21,7 @@ const Contact: React.FC = () => {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email) return;
 
@@ -36,19 +36,24 @@ const Contact: React.FC = () => {
         message: formState.message
       });
 
-      // Send email via Resend API
-      const result = await emailService.sendInquiry({
-        name: formState.name,
-        email: formState.email,
-        message: formState.message
-      });
+      // Resend API integration commented out - API key not available yet
+      // TODO: Uncomment when Resend API key is configured
+      // const result = await emailService.sendInquiry({
+      //   name: formState.name,
+      //   email: formState.email,
+      //   message: formState.message
+      // });
 
-      if (result.success) {
-        setStatus('success');
-        setFormState({ name: '', email: '', message: '' });
-      } else {
-        setStatus('error');
-      }
+      // if (result.success) {
+      //   setStatus('success');
+      //   setFormState({ name: '', email: '', message: '' });
+      // } else {
+      //   setStatus('error');
+      // }
+
+      // For now, just show success after saving to localStorage
+      setStatus('success');
+      setFormState({ name: '', email: '', message: '' });
     } catch (err) {
       console.error('Error submitting form:', err);
       setStatus('error');

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Globe, ExternalLink } from 'lucide-react';
 import blueLogo from '../assets/images/AAF blue logo (1).png';
 import sdgImage from '../assets/SDG Image.jpg';
-import uswawaImage from '../assets/Uswawa Image.jpg';
+import uswawaImage from '../assets/UKW Logo.jpeg';
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },

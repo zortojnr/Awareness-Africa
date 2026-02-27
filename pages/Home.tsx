@@ -13,6 +13,8 @@ import img10 from '../assets/images/10.jpeg';
 import img16 from '../assets/images/16.jpeg';
 import blueLogo from '../assets/images/AAF blue logo (1).png';
 import whiteLogo from '../assets/images/AAF White.png';
+import sdgImage from '../assets/SDG Image.jpg';
+import ukwLogo from '../assets/UKW Logo.jpeg';
 import { useContent } from '../hooks/useContent';
 
 const revealProps = {
@@ -193,6 +195,35 @@ const Home: React.FC = () => {
           <ImpactPillars onActiveColorChange={setActiveImpactColor} />
         </div>
       </motion.section>
+
+      {/* Partner Logos Marquee */}
+      <section className="py-16 sm:py-20 px-6 bg-white border-y border-slate-200 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-16 animate-marquee whitespace-nowrap">
+            <div className="flex items-center gap-16 shrink-0">
+              <img src={sdgImage} alt="SDG Youth Connect" className="h-16 sm:h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+              <img src={ukwLogo} alt="UsawaKwaWote Project" className="h-16 sm:h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+              <img src={sdgImage} alt="SDG Youth Connect" className="h-16 sm:h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+              <img src={ukwLogo} alt="UsawaKwaWote Project" className="h-16 sm:h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+            </div>
+            <div className="flex items-center gap-16 shrink-0" aria-hidden="true">
+              <img src={sdgImage} alt="SDG Youth Connect" className="h-16 sm:h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+              <img src={ukwLogo} alt="UsawaKwaWote Project" className="h-16 sm:h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+              <img src={sdgImage} alt="SDG Youth Connect" className="h-16 sm:h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+              <img src={ukwLogo} alt="UsawaKwaWote Project" className="h-16 sm:h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+            </div>
+          </div>
+        </div>
+        <style>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+          }
+        `}</style>
+      </section>
 
       <SectionDivider />
 
