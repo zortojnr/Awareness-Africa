@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -10,10 +10,13 @@ import Volunteer from './pages/Volunteer';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
 import Payment from './pages/Payment';
+import Partners from './pages/Partners';
 import InvolvementModal from './components/InvolvementModal';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
 import FloatingSlogan from './components/FloatingSlogan';
+import SEOHead from './components/SEOHead';
+import StructuredData from './components/StructuredData';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Admin Imports
@@ -64,6 +67,8 @@ const App: React.FC = () => {
 
   return (
     <Router>
+      <SEOHead />
+      <StructuredData />
       <ScrollToTop />
       <AnimatePresence mode="wait">
         {isLoading ? (
@@ -88,6 +93,7 @@ const App: React.FC = () => {
                   <Route path="/volunteer" element={<PageWrapper><Volunteer /></PageWrapper>} />
                   <Route path="/resources" element={<PageWrapper><Resources /></PageWrapper>} />
                   <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+                  <Route path="/partners" element={<PageWrapper><Partners /></PageWrapper>} />
                   <Route path="/payment" element={<PageWrapper><Payment /></PageWrapper>} />
                   <Route path="/initiatives/:slug" element={<PageWrapper><InitiativeDetail /></PageWrapper>} />
                   

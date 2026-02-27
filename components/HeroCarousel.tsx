@@ -103,8 +103,9 @@ const HeroCarousel: React.FC = () => {
           {SLIDES[current].image ? (
             <img 
               src={SLIDES[current].image} 
-              alt={SLIDES[current].title}
+              alt={`${SLIDES[current].title} - ${SLIDES[current].subtitle}`}
               className="w-full h-full object-cover grayscale opacity-60 pointer-events-none select-none"
+              loading={current === 0 ? "eager" : "lazy"}
             />
           ) : (
             <div 

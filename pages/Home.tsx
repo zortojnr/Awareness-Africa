@@ -42,7 +42,7 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src={img10} 
-            alt="Community" 
+            alt="Awareness Africa Foundation community members engaging in youth empowerment programs" 
             className="w-full h-full object-cover opacity-20 grayscale"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FCFBF7] via-[#FCFBF7]/95 to-[#FCFBF7]" />
@@ -72,7 +72,7 @@ const Home: React.FC = () => {
             <div className="aspect-[4/5] bg-white relative overflow-hidden group shadow-2xl">
               <img 
                 src={img16} 
-                alt="Impact" 
+                alt="Awareness Africa Foundation impact - youth participants in educational workshop" 
                 className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
               />
             </div>
@@ -233,7 +233,7 @@ const Home: React.FC = () => {
         {/* Abstract Background Element */}
         <img 
           src={blueLogo} 
-          alt="" 
+          alt="Awareness Africa Foundation logo" 
           className="absolute -right-20 -bottom-20 w-[300px] md:w-[500px] opacity-[0.03] pointer-events-none select-none"
         />
         
@@ -263,6 +263,13 @@ const Home: React.FC = () => {
                 onClick={() => navigate('/volunteer')}
               >
                 Become a Volunteer
+              </Button>
+              <Button 
+                variant="outline" 
+                className="w-full sm:w-auto px-10 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white"
+                onClick={() => navigate('/partners')}
+              >
+                Our Partners
               </Button>
             </div>
           </motion.div>

@@ -12,7 +12,7 @@ import rhodaImg from '../assets/images/Rhoda.jpeg';
 import motunrayoImg from '../assets/images/Motunrayo.jpeg';
 import tayeImg from '../assets/images/Taye.png';
 import blueLogo from '../assets/images/AAF blue logo (1).png';
-import founderImg from '../assets/images/founder.jpeg';
+import founderImg from '../assets/Founder Main.jpg';
 import { useContent } from '../hooks/useContent';
 
 const revealProps = {
@@ -63,9 +63,9 @@ const About: React.FC = () => {
     },
     {
       name: "Taye Ikuponiyi",
-      role: "Welfare Officer",
+      role: "Welfare Officer / Digital Communication officer",
       image: tayeImg,
-      bio: "Ensuring the well-being of our team and beneficiaries remains at the heart of our operations."
+      bio: "Ensuring the well-being of our team and beneficiaries remains at the heart of our operations. Creates and manages digital content, including articles, social media campaigns, and visual storytelling"
     }
   ];
 
@@ -151,8 +151,9 @@ const About: React.FC = () => {
             <motion.div {...revealProps} transition={{ delay: 0.2 }} className="relative aspect-video lg:aspect-[4/5] bg-slate-200 overflow-hidden shadow-2xl">
                <img 
                  src={methodologyImg}
-                 alt="Community Strategy" 
+                 alt="Awareness Africa Foundation community strategy and methodology for youth empowerment" 
                  className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+                 loading="lazy"
                />
             </motion.div>
           </div>
@@ -256,8 +257,9 @@ const About: React.FC = () => {
                   {member.image ? (
                     <img 
                       src={member.image} 
-                      alt={member.name}
+                      alt={`${member.name}, ${member.role} at Awareness Africa Foundation`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-300">
@@ -291,6 +293,7 @@ const About: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="secondary" className="w-full sm:w-auto px-10" onClick={() => navigate('/contact')}>Institutional Inquiry</Button>
               <Button variant="outline" className="w-full sm:w-auto px-10 border-white/20 text-white hover:bg-white hover:text-black" onClick={() => navigate('/resources')}>Annual Reports</Button>
+              <Button variant="outline" className="w-full sm:w-auto px-10 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white" onClick={() => navigate('/partners')}>Our Partners</Button>
             </div>
           </motion.div>
         </div>

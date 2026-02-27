@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
 import Button from '../components/Button';
 import { adminService } from '../services/adminService';
+import { emailService } from '../services/emailService';
 
 const revealProps = {
   initial: { opacity: 0, y: 20 },
@@ -20,27 +21,38 @@ const Contact: React.FC = () => {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email) return;
 
     setStatus('submitting');
     
-    // Simulate network delay then save
-    setTimeout(() => {
-      try {
-        adminService.saveInquiry({
-          name: formState.name,
-          email: formState.email,
-          type: 'contact',
-          message: formState.message
-        });
+    try {
+      // Save to local storage for admin dashboard
+      adminService.saveInquiry({
+        name: formState.name,
+        email: formState.email,
+        type: 'contact',
+        message: formState.message
+      });
+
+      // Send email via Resend API
+      const result = await emailService.sendInquiry({
+        name: formState.name,
+        email: formState.email,
+        message: formState.message
+      });
+
+      if (result.success) {
         setStatus('success');
         setFormState({ name: '', email: '', message: '' });
-      } catch (err) {
+      } else {
         setStatus('error');
       }
-    }, 1000);
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setStatus('error');
+    }
   };
 
   return (

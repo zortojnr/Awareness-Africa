@@ -1,0 +1,18 @@
+# robots.txt for Awareness Africa Foundation
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Disallow admin routes
+Disallow: /admin
+Disallow: /admin/*
+
+# Disallow API routes if any
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.awarenessafrica.org/sitemap.xml
+
+# Crawl delay (optional - adjust if needed)
+Crawl-delay: 1

@@ -131,8 +131,9 @@ const Programs: React.FC = () => {
               >
                 <img 
                   src={img} 
-                  alt={`Workshop moment ${i + 1}`} 
+                  alt={`Awareness Africa Foundation workshop session ${i + 1} - community education and empowerment program`} 
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
               </motion.div>

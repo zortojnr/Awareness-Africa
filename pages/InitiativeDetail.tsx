@@ -88,7 +88,7 @@ const HerAwarenessPage: React.FC = () => {
               </div>
             </motion.div>
             <motion.div {...revealProps} transition={{ delay: 0.2 }} className="relative aspect-[4/5] bg-slate-100 hidden lg:block overflow-hidden shadow-lg">
-               <img src={img1} alt="Community Education" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+               <img src={img1} alt="HerAwareness Africa community education workshop for young women" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
             </motion.div>
           </div>
         </div>
@@ -115,10 +115,10 @@ const HerAwarenessPage: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
              <div className="aspect-video bg-slate-200 overflow-hidden shadow-sm">
-                <img src={img2} alt="Empowered Youth" className="w-full h-full object-cover" />
+                <img src={img2} alt="Empowered young women participating in HerAwareness Africa programs" className="w-full h-full object-cover" loading="lazy" />
              </div>
              <div className="aspect-video bg-slate-200 overflow-hidden shadow-sm">
-                <img src={img9} alt="Workshop Session" className="w-full h-full object-cover" />
+                <img src={img9} alt="HerAwareness Africa workshop session on career development and empowerment" className="w-full h-full object-cover" loading="lazy" />
              </div>
           </div>
         </div>
@@ -129,7 +129,7 @@ const HerAwarenessPage: React.FC = () => {
       <section className="py-20 sm:py-32 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
            <div className="aspect-[4/3] bg-slate-100 overflow-hidden shadow-lg hidden lg:block order-2 lg:order-1">
-              <img src={img4} alt="Mentorship" className="w-full h-full object-cover" />
+              <img src={img4} alt="HerAwareness Africa mentorship program connecting young women with career guidance" className="w-full h-full object-cover" loading="lazy" />
            </div>
            
            <div className="max-w-4xl order-1 lg:order-2">
@@ -186,7 +186,7 @@ const HerAwarenessPage: React.FC = () => {
                 </li>
               </ul>
               <div className="aspect-video bg-slate-800 mt-6 overflow-hidden border border-white/10">
-                 <img src={img5} alt="Career Workshop" className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" />
+                 <img src={img5} alt="HerAwareness Africa career workshop - Day 1 education and career empowerment session" className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" loading="lazy" />
               </div>
             </div>
 
@@ -212,7 +212,7 @@ const HerAwarenessPage: React.FC = () => {
                 </li>
               </ul>
               <div className="aspect-video bg-slate-800 mt-6 overflow-hidden border border-white/10">
-                 <img src={img6} alt="Health Session" className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" />
+                 <img src={img6} alt="HerAwareness Africa health session - Day 2 sexual health and personal growth workshop" className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" loading="lazy" />
               </div>
             </div>
           </div>

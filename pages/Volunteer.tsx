@@ -62,7 +62,7 @@ const Volunteer: React.FC = () => {
              </div>
              {/* Strategic placement of Image 22 */}
              <div className="relative aspect-video bg-slate-100 overflow-hidden shadow-2xl rounded-sm border-4 border-white">
-                <img src={img22} alt="Community Engagement" className="w-full h-full object-cover" />
+                <img src={img22} alt="Awareness Africa Foundation community engagement and volunteer opportunities" className="w-full h-full object-cover" loading="lazy" />
              </div>
           </div>
           

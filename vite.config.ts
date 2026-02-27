@@ -19,6 +19,33 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        // Code splitting for better performance
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+              'animation-vendor': ['framer-motion'],
+              'ui-vendor': ['lucide-react']
+            }
+          }
+        },
+        // Optimize chunk size warnings
+        chunkSizeWarningLimit: 1000,
+        // Enable source maps for production debugging (optional)
+        sourcemap: false,
+        // Minify for production
+        minify: 'terser',
+        terserOptions: {
+          compress: {
+            drop_console: mode === 'production'
+          }
+        }
+      },
+      // Optimize dependencies
+      optimizeDeps: {
+        include: ['react', 'react-dom', 'react-router-dom', 'framer-motion']
       }
     };
 });
