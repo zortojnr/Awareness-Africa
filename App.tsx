@@ -13,6 +13,7 @@ import Payment from './pages/Payment';
 import Partners from './pages/Partners';
 import LearningHub from './pages/LearningHub';
 import InvolvementModal from './components/InvolvementModal';
+import CertificateModal from './components/CertificateModal';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
 import FloatingSlogan from './components/FloatingSlogan';
@@ -54,16 +55,23 @@ const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleOpen = () => setIsModalOpen(true);
+    const handleCertificateOpen = () => setIsCertificateModalOpen(true);
+    
     window.addEventListener('open-involvement-modal', handleOpen);
+    window.addEventListener('open-certificate-modal', handleCertificateOpen);
     
     // Track User Visit
     adminService.trackVisit();
 
-    return () => window.removeEventListener('open-involvement-modal', handleOpen);
+    return () => {
+      window.removeEventListener('open-involvement-modal', handleOpen);
+      window.removeEventListener('open-certificate-modal', handleCertificateOpen);
+    };
   }, []);
 
   return (
@@ -125,6 +133,7 @@ const App: React.FC = () => {
             </div>
             <Footer />
             <InvolvementModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <CertificateModal isOpen={isCertificateModalOpen} onClose={() => setIsCertificateModalOpen(false)} />
           </motion.div>
         )}
       </AnimatePresence>

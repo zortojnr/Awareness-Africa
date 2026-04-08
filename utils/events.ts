@@ -7,3 +7,7 @@
 export const openInvolvementModal = () => {
   window.dispatchEvent(new CustomEvent('open-involvement-modal'));
 };
+
+export const openCertificateModal = () => {
+  window.dispatchEvent(new CustomEvent('open-certificate-modal'));
+};

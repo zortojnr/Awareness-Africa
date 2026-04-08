@@ -1,4 +1,4 @@
-import React from 'react';
+import { openCertificateModal } from '../utils/events';
 import { motion } from 'framer-motion';
 import { BookOpen, Users, Award, CheckCircle, ArrowRight, Clock } from 'lucide-react';
 
@@ -257,15 +257,13 @@ const LearningHub: React.FC = () => {
             <p className="text-lg text-slate-600 mb-8 leading-relaxed">
               Did you complete a course and receive certification? Upload your certificate to get your official AAF Certificate of Participation.
             </p>
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSf-uxryaNwwbknaa7zKtYfK0mHHcx2Y1pqyHYaiYiRxOXyxXA/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={openCertificateModal}
               className="inline-flex items-center gap-3 bg-brand-primary text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-brand-accent transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               Click me
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
           </motion.div>
         </div>
       </section>
