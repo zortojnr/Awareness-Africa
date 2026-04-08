@@ -31,7 +31,9 @@ export const NAV_LINKS = [
   { label: 'Programs', path: '/programs' },
   { label: 'Get Involved', path: '/volunteer' },
   { label: 'Resources', path: '/resources' },
-  { label: 'Contact', path: '/contact' }
+  { label: 'Learning Hub', path: '/learning-hub' },
+  { label: 'Contact', path: '/contact' },
+  { label: 'Community', path: 'https://chat.whatsapp.com/I4i76f4GFlS825eCbZXQ1O?mode=gi_t' }
 ];
 
 export const CORE_VALUES = [

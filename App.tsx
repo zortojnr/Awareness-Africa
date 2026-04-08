@@ -11,6 +11,7 @@ import Resources from './pages/Resources';
 import Contact from './pages/Contact';
 import Payment from './pages/Payment';
 import Partners from './pages/Partners';
+import LearningHub from './pages/LearningHub';
 import InvolvementModal from './components/InvolvementModal';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
@@ -95,6 +96,7 @@ const App: React.FC = () => {
                   <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
                   <Route path="/partners" element={<PageWrapper><Partners /></PageWrapper>} />
                   <Route path="/payment" element={<PageWrapper><Payment /></PageWrapper>} />
+                  <Route path="/learning-hub" element={<PageWrapper><LearningHub /></PageWrapper>} />
                   <Route path="/initiatives/:slug" element={<PageWrapper><InitiativeDetail /></PageWrapper>} />
                   
                   {/* Admin Routes */}

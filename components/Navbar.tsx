@@ -68,6 +68,11 @@ const Navbar: React.FC = () => {
     setIsOpen(false);
     setIsInitiativesOpen(false);
     
+    if (path.startsWith('http')) {
+      window.open(path, '_blank');
+      return;
+    }
+    
     if (path.startsWith('/')) {
       navigate(path);
       return;
