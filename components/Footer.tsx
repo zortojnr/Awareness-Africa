@@ -26,7 +26,14 @@ const Footer: React.FC = () => {
               <Facebook size={20} className="hover:text-brand-accent transition-colors cursor-pointer" />
               <Twitter size={20} className="hover:text-brand-accent transition-colors cursor-pointer" />
               <Instagram size={20} className="hover:text-brand-accent transition-colors cursor-pointer" />
-              <Linkedin size={20} className="hover:text-brand-accent transition-colors cursor-pointer" />
+              <a
+                href="https://www.linkedin.com/company/awareness-africa-foundation/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-accent transition-colors"
+              >
+                <Linkedin size={20} className="cursor-pointer" />
+              </a>
             </div>
           </div>
 
@@ -40,6 +47,11 @@ const Footer: React.FC = () => {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a href="https://chat.whatsapp.com/I4i76f4GFlS825eCbZXQ1O?mode=gi_t" target="_blank" rel="noopener noreferrer" className="text-[11px] text-white/40 hover:text-white transition-all uppercase tracking-[0.2em] font-bold">
+                  Join our community
+                </a>
+              </li>
             </ul>
           </div>
 

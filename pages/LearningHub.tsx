@@ -170,7 +170,7 @@ const LearningHub: React.FC = () => {
                   </div>
                 </div>
                 <a
-                  href="https://www.volunteerministers.org/"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSf-uxryaNwwbknaa7zKtYfK0mHHcx2Y1pqyHYaiYiRxOXyxXA/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-brand-primary text-white px-6 py-3 text-sm font-bold hover:bg-brand-accent transition-all duration-300 text-center block rounded-lg"
@@ -178,7 +178,7 @@ const LearningHub: React.FC = () => {
                   Start Learning
                 </a>
                 <p className="text-xs text-slate-400 mt-2 text-center">
-                  You will be redirected to our learning partner's platform.
+                  Register to access our learning courses.
                 </p>
               </motion.div>
             ))}
@@ -241,6 +241,32 @@ const LearningHub: React.FC = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Certificate Claim Section */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-6">Claim Your AAF Certificate</h2>
+            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              Did you complete a course and receive certification? Upload your certificate to get your official AAF Certificate of Participation.
+            </p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSf-uxryaNwwbknaa7zKtYfK0mHHcx2Y1pqyHYaiYiRxOXyxXA/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-brand-primary text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-brand-accent transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              Click me
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
         </div>
       </section>
 

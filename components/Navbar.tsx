@@ -123,7 +123,7 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* DESKTOP NAV */}
-        <div className="hidden lg:flex items-center space-x-10">
+        <div className="hidden lg:flex items-center space-x-6 xl:space-x-10">
           {NAV_LINKS.map((link) => {
             const isInitiatives = link.label === 'Initiatives';
             const isRoute = link.path.startsWith('/');
@@ -220,7 +220,7 @@ const Navbar: React.FC = () => {
             className="fixed inset-0 bg-brand-primary z-[105] flex flex-col h-screen w-screen overflow-hidden lg:hidden"
           >
             <div className="flex flex-col h-full justify-center px-10">
-              <div className="flex flex-col space-y-6 overflow-y-auto pt-16 pb-10">
+              <div className="flex flex-col space-y-8 overflow-y-auto pt-16 pb-10">
                 {NAV_LINKS.map((link) => {
                   const isInitiatives = link.label === 'Initiatives';
                   const isRoute = link.path.startsWith('/');
