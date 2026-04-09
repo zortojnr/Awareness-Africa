@@ -50,55 +50,34 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ isOpen, onClose }) 
     setIsSubmitting(true);
 
     try {
-      // Create canvas for drawing
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      if (!ctx) {
-        throw new Error('Canvas not supported');
-      }
-
-      // Load the certificate template
+      // Generate certificate
       const img = new Image();
-      img.crossOrigin = 'anonymous';
+      img.crossOrigin = "anonymous";
+      img.src = "/certificate image/Certificate.png";
       
       await new Promise((resolve, reject) => {
         img.onload = resolve;
         img.onerror = reject;
-        img.src = '/certificate image/Certificate.png';
       });
 
-      // Set canvas size to match image
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      // Draw the template
-      ctx.drawImage(img, 0, 0);
-
-      // Draw the name
-      ctx.font = 'bold 36px serif';
-      ctx.fillStyle = '#1a1a2e';
-      ctx.textAlign = 'left';
-      ctx.fillText(formData.name, 75, 258);
-
-      // Create PDF
       const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'mm',
-        format: [222.8, 157.4] // A4 landscape in mm
+        orientation: "landscape",
+        unit: "mm",
+        format: [222.8, 157.4],
       });
 
-      // Convert canvas to data URL
-      const imgData = canvas.toDataURL('image/png');
-      
-      // Add image to PDF (full page)
-      pdf.addImage(imgData, 'PNG', 0, 0, 222.8, 157.4);
+      // Add certificate background
+      pdf.addImage(img, "PNG", 0, 0, 222.8, 157.4);
 
-      // Generate safe filename
-      const safeName = formData.name.replace(/[^a-zA-Z0-9]/g, '_');
-      const filename = `AAF_Certificate_${safeName}.pdf`;
+      // Add participant name
+      pdf.setFont("times", "bold");
+      pdf.setFontSize(28);
+      pdf.setTextColor(26, 26, 46);
+      pdf.text(formData.name, 21, 68);
 
-      // Download the PDF
-      pdf.save(filename);
+      // Download
+      const safeName = formData.name.replace(/[^a-zA-Z0-9 ]/g, "").trim();
+      pdf.save(`AAF_Certificate_${safeName}.pdf`);
 
       setIsSubmitted(true);
       
