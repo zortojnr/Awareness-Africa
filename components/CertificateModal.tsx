@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Upload, User, FileText, CheckCircle } from 'lucide-react';
+import { X, Upload, User, FileText, CheckCircle, Download } from 'lucide-react';
+import jsPDF from 'jspdf';
 
 interface CertificateModalProps {
   isOpen: boolean;
@@ -37,25 +38,83 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ isOpen, onClose }) 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.certificate) {
-      alert('Please fill in all fields');
+    if (!formData.name.trim()) {
+      alert('Please enter your full name');
+      return;
+    }
+    if (!formData.certificate) {
+      alert('Please upload your course certificate');
       return;
     }
 
     setIsSubmitting(true);
 
-    // Here you would typically send the data to your backend
-    // For now, we'll simulate a submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Create canvas for drawing
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        throw new Error('Canvas not supported');
+      }
+
+      // Load the certificate template
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = '/certificate image/Certificate.png';
+      });
+
+      // Set canvas size to match image
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // Draw the template
+      ctx.drawImage(img, 0, 0);
+
+      // Draw the name
+      ctx.font = 'bold 36px serif';
+      ctx.fillStyle = '#1a1a2e';
+      ctx.textAlign = 'left';
+      ctx.fillText(formData.name, 75, 258);
+
+      // Create PDF
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'mm',
+        format: [222.8, 157.4] // A4 landscape in mm
+      });
+
+      // Convert canvas to data URL
+      const imgData = canvas.toDataURL('image/png');
+      
+      // Add image to PDF (full page)
+      pdf.addImage(imgData, 'PNG', 0, 0, 222.8, 157.4);
+
+      // Generate safe filename
+      const safeName = formData.name.replace(/[^a-zA-Z0-9]/g, '_');
+      const filename = `AAF_Certificate_${safeName}.pdf`;
+
+      // Download the PDF
+      pdf.save(filename);
+
       setIsSubmitted(true);
-      // Reset form after 2 seconds
+      
+      // Reset form after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: '', certificate: null });
         onClose();
-      }, 2000);
-    }, 2000);
+      }, 3000);
+
+    } catch (error) {
+      console.error('Error generating certificate:', error);
+      alert('Error generating certificate. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -98,9 +157,9 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ isOpen, onClose }) 
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
                 >
-                  <CheckCircle size={64} className="text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-display font-bold text-slate-900 mb-2">Certificate Submitted!</h3>
-                  <p className="text-slate-600">Your AAF certificate will be generated and sent to you shortly.</p>
+                  <Download size={64} className="text-green-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-display font-bold text-slate-900 mb-2">Certificate Generated!</h3>
+                  <p className="text-slate-600">Your AAF certificate is downloading. Check your downloads folder.</p>
                 </motion.div>
               ) : (
                 <div className="max-w-md mx-auto">
